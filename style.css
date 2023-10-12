@@ -1,0 +1,39 @@
+body{
+    background: linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)), url('./img/website/Gaza.jpg') no-repeat;
+    font-size: large;
+    color: red;
+}
+
+div{
+        text-align: right;
+}
+.list-group{
+    color: black;
+}
+
+img {
+  height: 420px;
+  background: #aaa;
+  border-radius: 20px 0;
+}
+
+.header {
+    background-image: url('./img/website/Israel.jpg') ;
+    
+    color: rgb(37, 158, 86);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+
+.footer {
+    background-image: url('./img/website/Army.jpg');
+    color: rgb(37, 158, 86);
+}
+
+#canvas{
+    position: absolute;
+    background: url('./img/map.png');
+    width:100%;
+    height:100%;
+}
