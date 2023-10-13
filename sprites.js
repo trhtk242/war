@@ -125,5 +125,12 @@ export default {
         width: 46,
         height: 45,
         img: './img/jets.png'
+    },
+    cannon:{
+        x:1284,
+        y:410,
+        width: 94,
+        height: 178,
+        img: './img/jets.png'
     }
 }

@@ -7,6 +7,7 @@ import Explosion from "./classes/Explosion.js";
 import Car from "./classes/Car.js";
 import Bazooka from "./classes/Bazooka.js";
 import Item from "./classes/Item.js";
+import Cannon from "./classes/Cannon.js";
 const opening = document.getElementById('opening-screen')
 const button = document.getElementById('btn-start')
 
@@ -25,12 +26,12 @@ function setup() {
 	Bazooka.array = [];
 	Building.array = [];
 	Bullet.array = [];
+	Cannon.array = [];
 	Item.array = [];
 	Car.deleteAll();
 
 	setting.frame = 0;
 	createCity();
-
 }
 setup();
 
@@ -54,6 +55,7 @@ const loop = setInterval(() => {
 
 
 	Building.array.forEach(building => { building.update(ctx); })
+	Cannon.array.forEach(can => { can.update(ctx); })
 	Item.array.forEach(it => { it.update(ctx); });
 	Car.array.forEach(building => { building.update(ctx); })
 	Bazooka.array.forEach(baz => { baz.update(ctx); })

@@ -72,6 +72,7 @@ export default class Bullet extends Entity{
                 })
                 break;
             case 'bazooka':
+            case 'cannon':
                 if(this.collision(player)){
                     player.die(this.angle)
                     this.delete();
