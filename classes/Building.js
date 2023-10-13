@@ -1,6 +1,5 @@
 
 import Entity from "./Entity.js";
-import Target from "./Target.js";
 import sprites from "../sprites.js";
 
 export default class Building extends Entity{
@@ -45,6 +44,4 @@ Building.array = [];
 Building.create = (x,y,type) => { 
     let newBuild = new Building(x,y,type);
     Building.array.push(newBuild)
-    // Target.create(newBuild);
-
 }
