@@ -16,6 +16,11 @@ export default class Car extends Entity {
         this.angle = Math.PI + 0.3;
         this.speed = 7;
         this.dead = false;
+
+        
+        this.sound = new Audio('../sound/car-driving.mp3');
+        this.sound.volume = 0.2;
+        this.sound.play();
     }
 
     desireAng(x,y) {
@@ -46,6 +51,7 @@ export default class Car extends Entity {
     }
     
     delete(){
+        this.sound.pause(); 
         delete Car.array[this.id];
         // this.dead = true;
         // this.sx = sprites.car0.x
@@ -84,4 +90,11 @@ Car.array = [];
 Car.create = (x,y,target) => {
     let car = new Car(x,y,30,60,1,target);
     Car.array.push(car);
+}
+
+Car.deleteAll = () => {
+    Car.array.forEach(car =>{
+        car.sound.pause();
+    })
+    Car.array = [];
 }

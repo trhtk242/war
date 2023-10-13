@@ -103,5 +103,6 @@ const setting = {
 	score: 0,
 	frame: 0,
 	speedGame: 30,  //The game will be updated every 50 ms.
-	lose: false
+	lose: false,
+	theme : new Audio('./sound/battleThemeA_0.mp3')
 }

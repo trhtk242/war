@@ -10,6 +10,10 @@ export default class Explosion extends Entity{
         super(x,y,width,width,sprites.explosion);
         this.id = Explosion.array.length;
         this.animation= 0;
+
+        let audio = new Audio('../sound/explosion.mp3');
+        audio.play();
+        audio.volume = 0.01;
     }
 
     delete(){

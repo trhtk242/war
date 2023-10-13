@@ -22,7 +22,7 @@ function setup() {
 	Bazooka.array = [];
 	Building.array = [];
 	Bullet.array = [];
-	Car.array = [];
+	Car.deleteAll();
 
 	setting.frame = 0;
 	createCity();
@@ -30,6 +30,8 @@ function setup() {
 setup();
 
 const loop = setInterval(() => {
+	if(canvas.hidden) return;
+	
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 	if (setting.frame % 100 == 0)
@@ -55,7 +57,10 @@ const loop = setInterval(() => {
 	ctx.font = "40px serif";
 	ctx.fillText("⌚" + Math.floor(setting.frame / 30), canvas.width - 70, 170)
 
-	if (setting.lose && canvas.hidden === false) {
+	if (setting.lose) {
+		setting.theme.pause();
+		setting.theme.currentTime = 0;
+
 		if (!Building.array.find((build) => { return !build.destroyed })) {
 			Swal.fire({
 				icon: 'success',
@@ -71,6 +76,8 @@ const loop = setInterval(() => {
 			})
 		}
 		setup()
+		setting.theme.pause();
+		setting.theme.currentTime = 0;
 		opening.hidden = false;
 		canvas.hidden = true;
 
