@@ -6,6 +6,7 @@ import createCity from "./city.js";
 import Explosion from "./classes/Explosion.js";
 import Car from "./classes/Car.js";
 import Bazooka from "./classes/Bazooka.js";
+import Item from "./classes/Item.js";
 const opening = document.getElementById('opening-screen')
 const button = document.getElementById('btn-start')
 
@@ -24,10 +25,12 @@ function setup() {
 	Bazooka.array = [];
 	Building.array = [];
 	Bullet.array = [];
+	Item.array = [];
 	Car.deleteAll();
 
 	setting.frame = 0;
 	createCity();
+
 }
 setup();
 
@@ -41,13 +44,17 @@ const loop = setInterval(() => {
 			Math.randomBetween(0, canvas.width - 50),
 			Math.randomBetween(0, canvas.height - 50), player)
 
-	if (setting.frame % 430 == 0)
+	if (setting.frame % 390 == 0)
 		Car.create(
 			Math.randomBetween(-100, 0),
 			Math.randomBetween(canvas.height - 50, canvas.height,), player)
 
+	if (setting.frame % 500 == 0)
+			Item.create((Math.randomBetween(0,1) ===  0) ? 'heart':'bullet')
+
 
 	Building.array.forEach(building => { building.update(ctx); })
+	Item.array.forEach(it => { it.update(ctx); });
 	Car.array.forEach(building => { building.update(ctx); })
 	Bazooka.array.forEach(baz => { baz.update(ctx); })
 	Bullet.array.forEach(bullet => { bullet.update(ctx); });

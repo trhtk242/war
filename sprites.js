@@ -111,5 +111,19 @@ export default {
         y:409,
         width:82,height:141,
         img:'./img/jets.png'
+    },
+    bulletItem : {
+        x:59, 
+        y:378,
+        width: 37,
+        height: 46,
+        img: './img/jets.png'
+    },
+    heartItem:{
+        x:118,
+        y:377,
+        width: 46,
+        height: 45,
+        img: './img/jets.png'
     }
 }

@@ -92,7 +92,7 @@ export default class Player extends Entity {
 		ctx.font = "40px serif";
 		for (let i = 0; i < this.hp; i++)
 			ctx.fillText("❤️", canvas.width - 50 * i, 70)
-		ctx.fillText("🔥" + Math.ceil(this.bullets), canvas.width - 70, 120)
+		ctx.fillText("⚡" + Math.ceil(this.bullets), canvas.width - 70, 120)
 
 		if (this.name == 'roi')
 			if (this.safe) {

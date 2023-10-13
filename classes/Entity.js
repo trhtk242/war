@@ -21,14 +21,14 @@ export default class Entity{
 
     draw(ctx){
         ctx.save();
-        let x = this.x-player.x
-        let y =this.y-player.y
+        let x = this.x//-player.x
+        let y =this.y//-player.y
 
-        x+=canvas.width/2
-        y+=canvas.height/2
+        // x+=canvas.width/2
+        // y+=canvas.height/2
 
-        x-=this.width/2
-        y-=this.height/2
+        // x-=this.width/2
+        // y-=this.height/2
 
         ctx.translate(x + this.width / 2, y + this.height / 2);
 		ctx.rotate(this.angle);
