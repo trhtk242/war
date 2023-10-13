@@ -7,32 +7,32 @@ import {player} from '../index.js';
 export default class Player extends Entity {
 	constructor(x, y, name) {
 		if (name === 'noah') {
-			super(x, y, 75, 75, sprites.noah)
+			super(x, y, 75, 75, sprites.noah,0)
 			this.speed = 12
 			this.bullets = 150;
 			this.hp = 5;
 			this.rotateAmount = 0.1
 		} else if (name === 'saar') {
-			super(x, y, 100, 100, sprites.saar)
+			super(x, y, 100, 100, sprites.saar,0)
 			this.speed = 8;
 			this.bullets = 40;
 			this.rotateAmount = 0.05
 			this.hp = 5;
 		} else if (name === 'ido') {
-			super(x, y, 100, 100, sprites.ido)
+			super(x, y, 100, 100, sprites.ido,0)
 			this.speed = 8
 			this.bullets = 40;
 			this.rotateAmount = 0.2
 			this.hp = 5;
 		} else if (name === 'roi') {
-			super(x, y, 100, 100, sprites.roi)
+			super(x, y, 100, 100, sprites.roi,0)
 			this.speed = 10;
 			this.bullets = 60;
 			this.rotateAmount = 0.05
 			this.hp = 6;
 			this.safe = false;
 		} else {
-			super(x, y, 75, 75, sprites.cheater)
+			super(x, y, 75, 75, sprites.cheater,0)
 			this.speed = 10;
 			this.bullets = 1;
 			this.rotateAmount = 0.05
@@ -40,7 +40,6 @@ export default class Player extends Entity {
 		}
 
 		this.name = name;
-		this.angle = 0;
 		this.rotate = 0;
 		this.type = 'player'
 	}
@@ -102,13 +101,10 @@ export default class Player extends Entity {
 				if (this.bullets <= 0) this.safe = false;
 			}
 
-		ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
-		ctx.rotate(this.angle);
-		ctx.translate(-this.x - this.width / 2, -this.y - this.height / 2);
+		this.angle += this.rotate;
 		this.draw(ctx);
 		ctx.restore();
 
-		this.angle += this.rotate;
 	}
 
 	die(ang) {

@@ -5,11 +5,10 @@ import {player} from '../index.js';
 
 export default class Bazooka extends Entity {
     constructor(x,y,target){
-        super(x,y,30,40,sprites.bazooka)
+        super(x,y,30,40,sprites.bazooka, Math.randomBetween(0,Math.PI))
         this.id = Bazooka.array.length;
         
         this.target = target;
-        this.angle = Math.randomBetween(0,Math.PI);
 
         this.cooldown = 100;
         this.type = 'bazooka';
@@ -38,9 +37,6 @@ export default class Bazooka extends Entity {
         }
         ctx.save();
 
-        ctx.translate(this.x + this.width/2, this.y + this.height/2);
-        ctx.rotate(this.angle);
-        ctx.translate(-this.x - this.width/2, -this.y - this.height/2);
         this.draw(ctx);
 
         ctx.restore();

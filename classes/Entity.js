@@ -1,6 +1,7 @@
 //The first class,all classes are extended from it.
+import {player} from '../index.js';
 export default class Entity{
-    constructor(x,y,width,height,sprite){
+    constructor(x,y,width,height,sprite,angle){
         this.x = x;
         this.y = y;
         this.width = width;
@@ -14,16 +15,30 @@ export default class Entity{
 
         this.img = new Image();
         this.img.src = sprite.img;
+
+        this.angle = angle;
     }
 
     draw(ctx){
         ctx.save();
- 
+        let x = this.x-player.x
+        let y =this.y-player.y
+
+        x+=canvas.width/2
+        y+=canvas.height/2
+
+        x-=this.width/2
+        y-=this.height/2
+
+        ctx.translate(x + this.width / 2, y + this.height / 2);
+		ctx.rotate(this.angle);
+		ctx.translate(-x - this.width / 2, -y - this.height / 2);
+		
         ctx.drawImage(
             this.img,
             this.sx,    this.sy,
             this.swidth,this.sheight,
-            this.x,     this.y,
+            x,     y,
             this.width, this.height)
 
         ctx.restore();

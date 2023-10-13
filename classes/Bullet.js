@@ -9,10 +9,9 @@ import Bazooka from "./Bazooka.js";
 export default class Bullet extends Entity{
     constructor(x,y,angle,width,height,type) {
         let sprite = (type === 'player') ? sprites.bulletGood : sprites.bullet
-        super(x,y,width,height,sprite);
+        super(x,y,width,height,sprite,angle);
 
         this.speed = 12;
-        this.angle = angle;
         this.id = Bullet.array.length;
         this.type = type;
     }
@@ -84,9 +83,6 @@ export default class Bullet extends Entity{
 
         this.goTheWayWereFacing();
         ctx.save();
-        ctx.translate(this.x + this.width/2, this.y + this.height/2);
-        ctx.rotate(this.angle);
-        ctx.translate(-this.x - this.width/2, -this.y - this.height/2);
         this.draw(ctx);
         ctx.restore();
 

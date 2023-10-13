@@ -23,7 +23,7 @@ export default class Building extends Entity{
                 break;
         }
 
-        super(x,y,size.w,size.h,sprite);
+        super(x,y,size.w,size.h,sprite,0);
 
         this.destroyed = false;
         this.id = Building.array.length;

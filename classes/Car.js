@@ -6,14 +6,13 @@ import Building from "./Building.js";
 export default class Car extends Entity {
     constructor(x,y,width,height,type,target){
         let sprite = sprites['car'+type];
-        super(x,y,width,height,sprite)
+        super(x,y,width,height,sprite,Math.PI + 0.3)
 
         this.desireX = Math.randomBetween(0,canvas.width-50);
         this.desireY =Math.randomBetween(0,canvas.height-50);
 
         this.id = Car.array.length;
 
-        this.angle = Math.PI + 0.3;
         this.speed = 7;
         this.dead = false;
 
@@ -62,9 +61,9 @@ export default class Car extends Entity {
 
     update(ctx){
         if(!this.dead){
-        this.goTheWayWereFacing();
+            this.goTheWayWereFacing();
         
-        if(this.distance({x:this.desireX,y:this.desireY}) < 50)
+            if(this.distance({x:this.desireX,y:this.desireY}) < 50)
             for (let i = -1; i < 2; i++) {
                 Bazooka.create(
                     this.desireX + i*30, 
@@ -76,9 +75,6 @@ export default class Car extends Entity {
       
 
         ctx.save();
-        ctx.translate(this.x + this.width/2, this.y + this.height/2);
-        ctx.rotate(this.angle);
-        ctx.translate(-this.x - this.width/2, -this.y - this.height/2);
         this.draw(ctx);
         ctx.restore();
     }
