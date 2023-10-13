@@ -48,8 +48,6 @@ const soliders = [
 	},
 
 ]
-
-
 for (let i = 0; i < soliders.length; i++) {
 	if (soliders[i].code === 'cheater') {
 		divSolider.innerHTML += `<!--<a class="dropdown-item" onclick="changeSol(${i})">${soliders[i].name}</a> -->`
@@ -106,4 +104,11 @@ const setting = {
 	lose: false,
 	theme : new Audio('./sound/battleThemeA_0.mp3'),
 	sound:false
+}
+
+setting.theme.muted = true;
+
+const soundSwith = document.getElementById('soundSwith');
+soundSwith.onchange = () => {
+	setting.sound = !setting.sound;
 }

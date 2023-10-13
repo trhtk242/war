@@ -73,8 +73,9 @@ export default class Player extends Entity {
 				if (this.bullets <= 0) this.safe = false;
 				break;
 			case 'noah':
-				Bullet.create(Player.player,this.angle + 0.05);
-				Bullet.create(Player.player,this.angle - 0.05);
+				Bullet.create(Player.player,this.angle + 0.2);
+				Bullet.create(Player.player,this.angle - 0.2);
+				this.bullets--;
 				break;
 			default:
 				Bullet.create(Player.player);

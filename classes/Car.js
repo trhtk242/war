@@ -20,7 +20,7 @@ export default class Car extends Entity {
         
         this.sound = new Audio('../sound/car-driving.mp3');
         this.sound.volume = 0.2;
-        this.sound.play();
+        if(setting.sound) this.sound.play();
     }
 
     desireAng(x,y) {

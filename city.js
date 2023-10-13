@@ -17,7 +17,8 @@ export default function createCity(){
                 Building.create(j*100,i*100,element)
         }
     }
-
-    setting.theme.play();
+    
+    setting.theme.muted = false
+    if(setting.sound)setting.theme.play();
     setting.theme.volume = 0.015;
 }

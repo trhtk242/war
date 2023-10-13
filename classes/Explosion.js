@@ -12,7 +12,7 @@ export default class Explosion extends Entity{
         this.animation= 0;
 
         let audio = new Audio('../sound/explosion.mp3');
-        audio.play();
+        if(setting.sound) audio.play();
         audio.volume = 0.01;
     }
 
