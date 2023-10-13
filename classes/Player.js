@@ -8,9 +8,9 @@ export default class Player extends Entity {
 		if (name === 'noah') {
 			super(x, y, 75, 75, sprites.noah)
 			this.speed = 12
-			this.bullets = 180;
+			this.bullets = 150;
 			this.hp = 5;
-			this.rotateAmount = 0.05
+			this.rotateAmount = 0.1
 		} else if (name === 'saar') {
 			super(x, y, 100, 100, sprites.saar)
 			this.speed = 8;
@@ -71,6 +71,10 @@ export default class Player extends Entity {
 			case 'roi':
 				this.safe = !this.safe;
 				if (this.bullets <= 0) this.safe = false;
+				break;
+			case 'noah':
+				Bullet.create(Player.player,this.angle + 0.05);
+				Bullet.create(Player.player,this.angle - 0.05);
 				break;
 			default:
 				Bullet.create(Player.player);

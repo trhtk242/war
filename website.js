@@ -27,7 +27,7 @@ const soliders = [
 		name: "נועה הדר",
 		desc: "נועה היא טייסת מסוק קרב מוכשרת, שמקוריות חשובה בשבילה הרבה יותר מציוד מתקדם",
 		img: "../img/website/Noah_Hadar.jpg",
-		adventages: ['מסוק קטן ומהיר', 'קיבולת של 180 טילים'],
+		adventages: ['מסוק קטן ומהיר', 'קיבולת של 150 טילים'],
 		disadventages: ['צריך לכוון']
 	},
 	{
@@ -104,5 +104,6 @@ const setting = {
 	frame: 0,
 	speedGame: 30,  //The game will be updated every 50 ms.
 	lose: false,
-	theme : new Audio('./sound/battleThemeA_0.mp3')
+	theme : new Audio('./sound/battleThemeA_0.mp3'),
+	sound:false
 }
