@@ -1,7 +1,7 @@
 import sprites from "../sprites.js";
 import Bullet from "./Bullet.js";
 import Entity from './Entity.js';
-import Player from './Player.js';
+import {player} from '../index.js';
 
 export default class Bazooka extends Entity {
     constructor(x,y,target){
@@ -20,8 +20,8 @@ export default class Bazooka extends Entity {
     }
 
     desireAng() {
-        let diffX = Player.player.x - this.x;
-        let diffY =  Player.player.y - this.y;
+        let diffX = player.x - this.x;
+        let diffY =  player.y - this.y;
 
         return Math.atan2(diffY,diffX) - Math.PI/2
     }

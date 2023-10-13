@@ -3,7 +3,7 @@ import Building from "./Building.js";
 import Entity from "./Entity.js";
 import Explosion from "./Explosion.js";
 import Car from "./Car.js";
-import Player from './Player.js'
+import {player} from '../index.js';
 import Bazooka from "./Bazooka.js";
 
 export default class Bullet extends Entity{
@@ -44,7 +44,7 @@ export default class Bullet extends Entity{
                         this.delete();
                         building.delete();
                     }
-                    if(this.distance(nearest) > this.distance(building) &&(Player.player.name === 'saar'|| Player.player.name === 'cheater')){
+                    if(this.distance(nearest) > this.distance(building) &&(player.name === 'saar'|| player.name === 'cheater')){
                         this.angle = this.desireAng(building) 
                         nearest = building;
                     }
@@ -55,7 +55,7 @@ export default class Bullet extends Entity{
                         this.delete();
                         baz.delete();
                     }
-                    if(this.distance(nearest) > this.distance(baz) &&(Player.player.name === 'saar'|| Player.player.name === 'cheater')){
+                    if(this.distance(nearest) > this.distance(baz) &&(player.name === 'saar'|| player.name === 'cheater')){
                         this.angle = this.desireAng(baz) 
                         nearest = baz;
                     }
@@ -66,15 +66,15 @@ export default class Bullet extends Entity{
                         this.delete();
                         car.delete();
                     }
-                    if(this.distance(nearest) > this.distance(car) && (Player.player.name === 'saar' || Player.player.name === 'cheater')){
+                    if(this.distance(nearest) > this.distance(car) && (player.name === 'saar' || player.name === 'cheater')){
                         this.angle = this.desireAng(car) 
                         nearest = car;
                     }
                 })
                 break;
             case 'bazooka':
-                if(this.collision(Player.player)){
-                    Player.player.die(this.angle)
+                if(this.collision(player)){
+                    player.die(this.angle)
                     this.delete();
                 }
                 break;

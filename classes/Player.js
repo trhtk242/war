@@ -2,6 +2,7 @@ import Entity from "./Entity.js";
 import sprites from "../sprites.js";
 import Bullet from './Bullet.js';
 import Explosion from "./Explosion.js";
+import {player} from '../index.js';
 
 export default class Player extends Entity {
 	constructor(x, y, name) {
@@ -64,7 +65,7 @@ export default class Player extends Entity {
 				this.bullets--;
 			case 'cheater':
 				for (let i = -5; i < 5; i++) {
-					Bullet.create(Player.player,
+					Bullet.create(player,
 						this.angle + ((Math.PI * 2) / 10) * i)
 				}
 				break;
@@ -73,12 +74,12 @@ export default class Player extends Entity {
 				if (this.bullets <= 0) this.safe = false;
 				break;
 			case 'noah':
-				Bullet.create(Player.player,this.angle + 0.2);
-				Bullet.create(Player.player,this.angle - 0.2);
+				Bullet.create(player,this.angle + 0.2);
+				Bullet.create(player,this.angle - 0.2);
 				this.bullets--;
 				break;
 			default:
-				Bullet.create(Player.player);
+				Bullet.create(player);
 				this.bullets--;
 				break;
 		}
@@ -112,7 +113,7 @@ export default class Player extends Entity {
 
 	die(ang) {
 		if (this.name === 'roi' && this.safe) {
-			Bullet.create(Player.player, Math.PI + ang);
+			Bullet.create(player, Math.PI + ang);
 			return;
 		} else {
 			Explosion.create(this)
@@ -122,5 +123,3 @@ export default class Player extends Entity {
 
 	}
 }
-
-Player.playe = {};

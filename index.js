@@ -9,6 +9,8 @@ import Bazooka from "./classes/Bazooka.js";
 const opening = document.getElementById('opening-screen')
 const button = document.getElementById('btn-start')
 
+let player;
+
 button.onclick = () => {
 	opening.hidden = true;
 	canvas.hidden = false;
@@ -18,7 +20,7 @@ button.onclick = () => {
 function setup() {
 	setting.lose = false;
 
-	Player.player = new Player(0, 0, name.player)
+	player = new Player(0, 0, name.player)
 	Bazooka.array = [];
 	Building.array = [];
 	Bullet.array = [];
@@ -37,12 +39,12 @@ const loop = setInterval(() => {
 	if (setting.frame % 100 == 0)
 		Bazooka.create(
 			Math.randomBetween(0, canvas.width - 50),
-			Math.randomBetween(0, canvas.height - 50), Player.player)
+			Math.randomBetween(0, canvas.height - 50), player)
 
 	if (setting.frame % 430 == 0)
 		Car.create(
 			Math.randomBetween(-100, 0),
-			Math.randomBetween(canvas.height - 50, canvas.height,), Player.player)
+			Math.randomBetween(canvas.height - 50, canvas.height,), player)
 
 
 	Building.array.forEach(building => { building.update(ctx); })
@@ -51,7 +53,7 @@ const loop = setInterval(() => {
 	Bullet.array.forEach(bullet => { bullet.update(ctx); });
 	Explosion.array.forEach(explosion => { explosion.update(ctx); });
 
-	Player.player.update(ctx, canvas);
+	player.update(ctx, canvas);
 	setting.frame++;
 
 	ctx.font = "40px serif";
@@ -84,3 +86,5 @@ const loop = setInterval(() => {
 	}
 
 }, setting.speedGame)
+
+export {player};
