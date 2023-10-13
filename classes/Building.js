@@ -5,7 +5,7 @@ import Cannon from "./Cannon.js";
 import { player } from "../index.js";
 
 export default class Building extends Entity{
-    constructor(x,y,type){
+    constructor(x,y,type,cannon){
         let sprite = sprites['building'+type];
         let size = {
             w:150,
@@ -30,7 +30,7 @@ export default class Building extends Entity{
         this.destroyed = false;
         this.id = Building.array.length;
 
-        this.hasCannon = (Math.randomBetween(1,8)===1)
+        this.hasCannon = cannon
         if(this.hasCannon) this.cannon = Cannon.create(this,player)
     }
 
@@ -41,7 +41,7 @@ export default class Building extends Entity{
             this.cannon.delete();
             setTimeout(()=>{
                 this.cannon = Cannon.create(this,player)
-                this.img.src = '../img/building.png';
+                // this.img.src = '../img/building.png';
                 this.destroyed = false;
             },5000)
         }
@@ -54,7 +54,7 @@ export default class Building extends Entity{
 
 Building.array = [];
 
-Building.create = (x,y,type) => { 
-    let newBuild = new Building(x,y,type);
+Building.create = (x,y,type,cannon) => { 
+    let newBuild = new Building(x,y,type,cannon);
     Building.array.push(newBuild);
 }

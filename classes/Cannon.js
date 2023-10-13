@@ -13,7 +13,7 @@ export default class Cannon extends Entity {
         
         this.target = target;
 
-        this.cooldown = 150;
+        this.cooldown = Math.randomBetween(150,200);;
         this.type = 'cannon';
     }
 
@@ -38,7 +38,7 @@ export default class Cannon extends Entity {
                 setTimeout(()=>Bullet.create(this),100*i)
                 
             }
-            this.cooldown = 150;
+            this.cooldown = Math.randomBetween(150,200);
         }
 
         ctx.save();

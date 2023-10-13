@@ -40,12 +40,12 @@ const loop = setInterval(() => {
 	
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-	if (setting.frame % 100 == 0)
+	if (setting.frame % 100 == 0 && name.enemy =='abdul')
 		Bazooka.create(
 			Math.randomBetween(0, canvas.width - 50),
 			Math.randomBetween(0, canvas.height - 50), player)
 
-	if (setting.frame % 390 == 0)
+	if (setting.frame % 390 == 0 && name.enemy =='abdul')
 		Car.create(
 			Math.randomBetween(-100, 0),
 			Math.randomBetween(canvas.height - 50, canvas.height,), player)

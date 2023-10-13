@@ -50,14 +50,40 @@ const soliders = [
 ]
 for (let i = 0; i < soliders.length; i++) {
 	if (soliders[i].code === 'cheater') {
-		divSolider.innerHTML += `<!--<a class="dropdown-item" onclick="changeSol(${i})">${soliders[i].name}</a> -->`
+		divSolider.innerHTML += `<!--<a class="dropdown-item" onclick="changeCharacter(${i},true)">${soliders[i].name}</a> -->`
 		continue;
 	}
-	divSolider.innerHTML += `<a class="dropdown-item" onclick="changeSol(${i})">${soliders[i].name}</a>`
+	divSolider.innerHTML += `<a class="dropdown-item" onclick="changeCharacter(${i},true)">${soliders[i].name}</a>`
 }
+
+const divEnemy = document.getElementById('divEnemy');
+const enemies = [
+	{
+		code: 'abdul',
+		name: "עבדול מאליק",
+		desc: "עבדול מומחה בטילי קרקע אוויר. הכוחות שלו הם חתיכת כאב ראש",
+		img: "../img/website/Abdul_Malik.jpg",
+		adventages: ['חימוש מהיר וקטלני'],
+		disadventages: ['חיילים פשוטים בלבד']
+	},
+	{
+		code:'khalid',
+		name:'חאליד רהמן',
+		desc:'חאליד הוא אלוף הלוחמה הבנויה. הוא משתקם מהר ובהפתעה',
+		img:'../img/website/Khalid_Rahman.jpg',
+		adventages: ['תותחים חזקים','משתקם במהירות'],
+		disadventages: ['מעט יחידות']
+	}
+
+]
+for (let i = 0; i < enemies.length; i++) {
+	divEnemy.innerHTML += `<a class="dropdown-item" onclick="changeCharacter(${i},false)">${enemies[i].name}</a>`
+}
+
+
 const name = {
 	player: '',
-	enemy: 'abdul'
+	enemy: ''
 }
 
 console.log(' ברכות, אתה מספיק חכם בשביל לפתוח את המסוף. תכניס דמות_סודית() בשביל לקבל את הדמות הסודית')
@@ -66,32 +92,35 @@ function דמות_סודית() {
 	changeSol(4)
 }
 
+function changeCharacter(index,player){
+	let id = player ? 'tzahal' : 'hamas';
+	let list = player ? soliders : enemies;
+	document.getElementById(id +'-name').innerHTML = list[index].name;
+	document.getElementById(id +'-img').src = list[index].img;
+	document.getElementById(id+'-img').alt = list[index].name;
+	document.getElementById(id+'-desc').innerHTML = list[index].desc;
 
-
-function changeSol(index) {
-	document.getElementById('tzahal-name').innerHTML = soliders[index].name;
-	document.getElementById('tzahal-img').src = soliders[index].img;
-	document.getElementById('tzahal-img').alt = soliders[index].name;
-	document.getElementById('tzahal-desc').innerHTML = soliders[index].desc;
-
-	document.getElementById('tzahal-list').innerHTML = `<li class="list-group-item active">יתרונות</li>`;
-	for (let el of soliders[index].adventages) {
-		document.getElementById('tzahal-list').innerHTML += `
-		<li class="list-group-item">${el}</li>
-		`
+	document.getElementById(id+'-list').innerHTML = `<li class="list-group-item active">יתרונות</li>`;
+	for (let el of list[index].adventages) {
+		document.getElementById(id+'-list').innerHTML += `
+		<li class="list-group-item">${el}</li>`
 	}
-	document.getElementById('tzahal-list').innerHTML += `<li class="list-group-item bg-danger">חסרונות</li>`;
-	for (let el of soliders[index].disadventages) {
-		document.getElementById('tzahal-list').innerHTML += `
-		<li class="list-group-item">${el}</li>
-		`
+
+	document.getElementById(id+'-list').innerHTML += `<li class="list-group-item bg-danger">חסרונות</li>`;
+	for (let el of list[index].disadventages) {
+		document.getElementById(id+'-list').innerHTML += `
+		<li class="list-group-item">${el}</li>`
 	}
-	const RoiInst = document.getElementById('isRoi')
-	if (soliders[index].code == 'roi') RoiInst.hidden = false;
-	else RoiInst.hidden = true;
-	name.player = soliders[index].code;
+	if(player){
+		const RoiInst = document.getElementById('isRoi')
+		if (soliders[index].code == 'roi') RoiInst.hidden = false;
+		else RoiInst.hidden = true;
+	}
+	name[player?'player':'enemy'] = list[index].code
 }
-changeSol(0)
+changeCharacter(0,true)
+changeCharacter(0,false)
+
 
 Math.randomBetween = (min, max) => {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
