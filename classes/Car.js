@@ -50,6 +50,7 @@ export default class Car extends Entity {
     }
     
     delete(){
+        setting.score += 5;
         this.sound.pause(); 
         delete Car.array[this.id];
         // this.dead = true;
