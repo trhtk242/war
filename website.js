@@ -12,7 +12,7 @@ const soliders = [
 		desc: "עידו חושב שאת הכול אפשר לפתור בכוח, לא סתם המטוס שלו נקרא - שליחות קטלנית",
 		img: "../img/website/Ido_Raz.jpg",
 		adventages: ['מתקפת טילים קטלנית', 'מתמרן מהר בסיבובים'],
-		disadventages: ['מטוס איטי', 'קיבולת של 40 טילים']
+		disadventages: ['מטוס איטי', 'קיבולת של 40 טילים','טווח טילים קצר']
 	},
 	{
 		code: 'saar',
@@ -27,7 +27,7 @@ const soliders = [
 		name: "נועה הדר",
 		desc: "נועה היא טייסת מסוק קרב מוכשרת, שמקוריות חשובה בשבילה הרבה יותר מציוד מתקדם",
 		img: "../img/website/Noah_Hadar.jpg",
-		adventages: ['מסוק קטן ומהיר', 'קיבולת של 150 טילים'],
+		adventages: ['מסוק קטן ומהיר', 'קיבולת של 150 טילים','טווח טילים ארוך'],
 		disadventages: ['צריך לכוון']
 	},
 	{
@@ -43,7 +43,7 @@ const soliders = [
 		name: "גיורא משה",
 		desc: "גיורא הוא טייס אגדי. הוא חזר מהמתים כדי להוכיח שמוות זו לא סיבה לפרוש",
 		img: "../img/website/Giyora_Moshe.jpg",
-		adventages: ['טילים מתכווננים', 'קיבולית של אינסוף טילים', '100 חיים'],
+		adventages: ['הכול'],
 		disadventages: ['אין']
 	},
 
@@ -63,7 +63,7 @@ const enemies = [
 		name: "עבדול מאליק",
 		desc: "עבדול מומחה בטילי קרקע אוויר. הכוחות שלו הם חתיכת כאב ראש",
 		img: "../img/website/Abdul_Malik.jpg",
-		adventages: ['חימוש מהיר וקטלני'],
+		adventages: ['חימוש מהיר וקטלני','טווח טילים ארוך'],
 		disadventages: ['חיילים פשוטים בלבד']
 	},
 	{
@@ -72,7 +72,7 @@ const enemies = [
 		desc:'חאליד הוא אלוף הלוחמה הבנויה. הוא משתקם מהר ובהפתעה',
 		img:'../img/website/Khalid_Rahman.jpg',
 		adventages: ['תותחים חזקים','משתקם במהירות'],
-		disadventages: ['מעט יחידות']
+		disadventages: ['מעט יחידות','טווח טילים קצר']
 	}
 
 ]

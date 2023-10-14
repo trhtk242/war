@@ -36,7 +36,7 @@ export default class Cannon extends Entity {
 
         if(this.cooldown === 0){
             for (let i = 0; i < 3; i++) {
-                setTimeout(()=>Bullet.create(this),100*i)
+                setTimeout(()=>Bullet.create(this,20),100*i)
                 
             }
             this.cooldown = Math.randomBetween(150,200);

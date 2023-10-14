@@ -7,13 +7,14 @@ import {player} from '../index.js';
 import Bazooka from "./Bazooka.js";
 
 export default class Bullet extends Entity{
-    constructor(x,y,angle,width,height,type) {
+    constructor(x,y,angle,width,height,type,spanlife) {
         let sprite = (type === 'player') ? sprites.bulletGood : sprites.bullet
         super(x,y,width,height,sprite,angle);
 
         this.speed = 12;
         this.id = Bullet.array.length;
         this.type = type;
+        this.spanlife = spanlife;
     }
 
     goTheWayWereFacing() {
@@ -33,6 +34,12 @@ export default class Bullet extends Entity{
     }
 
     update(ctx){
+        this.spanlife-=1;
+        if(this.spanlife <= 0) {
+            this.delete();
+            return
+        }
+
         switch (this.type) {
             case 'player':
                 let nearest = {x:10000,y:10000}
@@ -91,12 +98,12 @@ export default class Bullet extends Entity{
     }
 }
 Bullet.array = [];
-Bullet.create = (owner,ang = owner.angle) => {
+Bullet.create = (owner,spanlife,ang = owner.angle) => {
     let bullet = new Bullet(
         owner.x + owner.width/2,
         owner.y + owner.height/2,
         ang,
         10,30,
-        owner.type)
+        owner.type,spanlife)
     Bullet.array.push(bullet);
 }

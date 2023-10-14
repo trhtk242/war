@@ -33,7 +33,7 @@ export default class Bazooka extends Entity {
         this.angle = this.desireAng();
 
         if(this.cooldown === 0){
-            Bullet.create(this);
+            Bullet.create(this,35);
             this.cooldown = 100;
         }
         ctx.save();

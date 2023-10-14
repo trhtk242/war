@@ -10,26 +10,26 @@ export default class Player extends Entity {
 			super(x, y, 75, 75, sprites.noah,0)
 			this.speed = 12
 			this.bullets = 150;
-			this.hp = 5;
+			this.hp = 3;
 			this.rotateAmount = 0.1
 		} else if (name === 'saar') {
 			super(x, y, 100, 100, sprites.saar,0)
 			this.speed = 8;
 			this.bullets = 40;
 			this.rotateAmount = 0.05
-			this.hp = 5;
+			this.hp = 3;
 		} else if (name === 'ido') {
 			super(x, y, 100, 100, sprites.ido,0)
 			this.speed = 8
 			this.bullets = 40;
 			this.rotateAmount = 0.2
-			this.hp = 5;
+			this.hp = 3;
 		} else if (name === 'roi') {
 			super(x, y, 100, 100, sprites.roi,0)
 			this.speed = 10;
 			this.bullets = 60;
 			this.rotateAmount = 0.05
-			this.hp = 6;
+			this.hp = 5;
 			this.safe = false;
 		} else {
 			super(x, y, 75, 75, sprites.cheater,0)
@@ -62,9 +62,14 @@ export default class Player extends Entity {
 		switch (this.name) {
 			case 'ido':
 				this.bullets--;
+				for (let i = -5; i < 5; i++) {
+					Bullet.create(player,20,
+						this.angle + ((Math.PI * 2) / 10) * i)
+				}
+				break;
 			case 'cheater':
 				for (let i = -5; i < 5; i++) {
-					Bullet.create(player,
+					Bullet.create(player,200,
 						this.angle + ((Math.PI * 2) / 10) * i)
 				}
 				break;
@@ -73,12 +78,12 @@ export default class Player extends Entity {
 				if (this.bullets <= 0) this.safe = false;
 				break;
 			case 'noah':
-				Bullet.create(player,this.angle + 0.2);
-				Bullet.create(player,this.angle - 0.2);
+				Bullet.create(player,100,this.angle + 0.2);
+				Bullet.create(player,100,this.angle - 0.2);
 				this.bullets--;
 				break;
 			default:
-				Bullet.create(player);
+				Bullet.create(player,20);
 				this.bullets--;
 				break;
 		}
@@ -109,7 +114,7 @@ export default class Player extends Entity {
 
 	die(ang) {
 		if (this.name === 'roi' && this.safe) {
-			Bullet.create(player, Math.PI + ang);
+			Bullet.create(player,100, Math.PI + ang);
 			return;
 		} else {
 			Explosion.create(this)
