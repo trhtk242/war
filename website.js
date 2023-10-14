@@ -80,12 +80,6 @@ for (let i = 0; i < enemies.length; i++) {
 	divEnemy.innerHTML += `<a class="dropdown-item" onclick="changeCharacter(${i},false)">${enemies[i].name}</a>`
 }
 
-
-const name = {
-	player: '',
-	enemy: ''
-}
-
 console.log(' ברכות, אתה מספיק חכם בשביל לפתוח את המסוף. תכניס דמות_סודית() בשביל לקבל את הדמות הסודית')
 
 function דמות_סודית() {
@@ -132,7 +126,9 @@ const setting = {
 	speedGame: 30,  //The game will be updated every 50 ms.
 	lose: false,
 	theme : new Audio('./sound/battleThemeA_0.mp3'),
-	sound:false
+	sound:false,
+	player:'',
+	enemy:'',
 }
 
 setting.theme.muted = true;

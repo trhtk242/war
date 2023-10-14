@@ -22,9 +22,9 @@ let cities = {
 export default function createCity(){
     for (let i = 0; i < 6; i++) {
         for (let j = 0; j < 12; j++) {
-            const element = cities[name.enemy][i][j];
+            const element = cities[setting.enemy][i][j];
             if(element !== 0){
-                if(name.enemy === 'khalid' && element > 10)
+                if(setting.enemy === 'khalid' && element > 10)
                     Building.create(j*100,i*100,element-10,true)
                 
                 else Building.create(j*100,i*100,element,false)

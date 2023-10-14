@@ -24,7 +24,7 @@ function setup() {
 	setting.score = 0;
 	setting.hard = 0;
 
-	player = new Player(0, 0, name.player)
+	player = new Player(0, 0, setting.player)
 	Bazooka.array = [];
 	Building.array = [];
 	Bullet.array = [];
@@ -42,12 +42,12 @@ const loop = setInterval(() => {
 	
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-	if (setting.frame % (70-setting.hard) == 0 && name.enemy =='abdul')
+	if (setting.frame % (70-setting.hard) == 0 && setting.enemy =='abdul')
 		Bazooka.create(
 			Math.randomBetween(0, canvas.width - 50),
 			Math.randomBetween(0, canvas.height - 50), player)
 
-	if (setting.frame % (350-setting.hard)  == 0 && name.enemy =='abdul')
+	if (setting.frame % (350-setting.hard)  == 0 && setting.enemy =='abdul')
 		Car.create(
 			Math.randomBetween(-100, 0),
 			Math.randomBetween(canvas.height - 50, canvas.height,), player)
