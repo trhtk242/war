@@ -78,6 +78,8 @@ const loop = setInterval(() => {
 				icon:'success',
 				title: 'כל הכבוד',
 				text: "השגת " + setting.score + ' נקודות',
+				allowEnterKey : false,
+				confirmButtonText:'סבבה'
 			})
 		
 
