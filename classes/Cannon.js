@@ -32,7 +32,8 @@ export default class Cannon extends Entity {
     update(ctx){
         this.cooldown --;
         
-        this.angle = this.desireAng();
+        if(this.distance(player) <= 300)
+            this.angle = this.desireAng();
 
         if(this.cooldown === 0){
             for (let i = 0; i < 3; i++) {

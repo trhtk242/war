@@ -39,6 +39,8 @@ export default class Building extends Entity{
         setting.score += 3;
         this.destroyed = true;
         this.img.src = '../img/destroyed.png';
+        
+        if(setting.enemy !== 'khalid') return;
         this.cannon.delete();
 
         setTimeout(()=>{
