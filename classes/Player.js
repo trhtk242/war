@@ -10,20 +10,20 @@ export default class Player extends Entity {
 			super(x, y, 75, 75, sprites.noah,0)
 			this.speed = 12
 			this.bullets = 150;
-			this.hp = 3;
+			this.hp = 4;
 			this.rotateAmount = 0.1
 		} else if (name === 'saar') {
 			super(x, y, 100, 100, sprites.saar,0)
 			this.speed = 8;
 			this.bullets = 40;
 			this.rotateAmount = 0.05
-			this.hp = 3;
+			this.hp = 4;
 		} else if (name === 'ido') {
 			super(x, y, 100, 100, sprites.ido,0)
 			this.speed = 8
 			this.bullets = 40;
 			this.rotateAmount = 0.2
-			this.hp = 3;
+			this.hp = 4;
 		} else if (name === 'roi') {
 			super(x, y, 100, 100, sprites.roi,0)
 			this.speed = 10;

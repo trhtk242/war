@@ -32,20 +32,22 @@ export default class Building extends Entity{
 
         this.hasCannon = cannon
         if(this.hasCannon) this.cannon = Cannon.create(this,player)
+        else this.cannon = {delete:()=>{}}
     }
 
     delete(){
         setting.score += 3;
         this.destroyed = true;
         this.img.src = '../img/destroyed.png';
-        if(this.hasCannon) {
-            this.cannon.delete();
-            setTimeout(()=>{
-                this.cannon = Cannon.create(this,player)
-                this.img.src = '../img/building.png';
-                this.destroyed = false;
-            },5000)
-        }
+        this.cannon.delete();
+
+        setTimeout(()=>{
+            this.img.src = '../img/building.png';
+            this.destroyed = false;
+
+            this.hasCannon = !this.hasCannon;
+            if(this.hasCannon) this.cannon = Cannon.create(this,player)
+        },5000)
     }
 
     update(ctx){
