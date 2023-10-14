@@ -27,20 +27,20 @@ const soliders = [
 		disadventages: ['מטוס איטי', 'קיבולת של 40 טילים','טווח טילים קצר']
 	},
 	{
-		code: 'saar',
-		name: "סער לוי",
-		desc: "סער תמיד נמצא צעד אחד לפני אוייביו, כאשר עבורו דיוק זה שם המשחק",
-		img: "../img/website/Saar_Levi.jpg",
-		adventages: ['טילים מתכווננים'],
-		disadventages: ['מטוס איטי', 'קיבולת של 40 טילים']
-	},
-	{
 		code: 'noah',
 		name: "נועה הדר",
 		desc: "נועה היא טייסת מסוק קרב מוכשרת, שמקוריות חשובה בשבילה הרבה יותר מציוד מתקדם",
 		img: "../img/website/Noah_Hadar.jpg",
 		adventages: ['מסוק קטן ומהיר', 'קיבולת של 150 טילים','טווח טילים ארוך'],
 		disadventages: ['צריך לכוון']
+	},
+	{
+		code: 'saar',
+		name: "סער לוי",
+		desc: "סער תמיד נמצא צעד אחד לפני אוייביו, כאשר עבורו דיוק זה שם המשחק",
+		img: "../img/website/Saar_Levi.jpg",
+		adventages: ['טילים מתכווננים'],
+		disadventages: ['מטוס איטי', 'קיבולת של 40 טילים']
 	},
 	{
 		code: 'roi',
@@ -58,6 +58,14 @@ const soliders = [
 		adventages: ['הכול'],
 		disadventages: ['אין']
 	},
+	// {
+	// 	code:'yedidya',
+	// 	name:'ידידיה עוז',
+	// 	desc: 'ידידה ',
+	// 	img: '../img/website/Yedidya_oz.jpg',
+	// 	adventages:[],
+	// 	disadventages:[]
+	// }
 
 ]
 for (let i = 0; i < soliders.length; i++) {
