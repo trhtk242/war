@@ -15,6 +15,7 @@ export default class Bazooka extends Entity {
     }
 
     delete(){
+        setting.score++;
         delete Bazooka.array[this.id];
     }
 

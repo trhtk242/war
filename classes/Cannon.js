@@ -18,6 +18,7 @@ export default class Cannon extends Entity {
     }
 
     delete(){
+        setting.score+=2;
         delete Cannon.array[this.id];
     }
 

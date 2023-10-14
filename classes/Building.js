@@ -35,13 +35,14 @@ export default class Building extends Entity{
     }
 
     delete(){
+        setting.score += 3;
         this.destroyed = true;
         this.img.src = '../img/destroyed.png';
         if(this.hasCannon) {
             this.cannon.delete();
             setTimeout(()=>{
                 this.cannon = Cannon.create(this,player)
-                // this.img.src = '../img/building.png';
+                this.img.src = '../img/building.png';
                 this.destroyed = false;
             },5000)
         }

@@ -21,6 +21,8 @@ button.onclick = () => {
 
 function setup() {
 	setting.lose = false;
+	setting.score = 0;
+	setting.hard = 0;
 
 	player = new Player(0, 0, name.player)
 	Bazooka.array = [];
@@ -40,19 +42,18 @@ const loop = setInterval(() => {
 	
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-	if (setting.frame % 100 == 0 && name.enemy =='abdul')
+	if (setting.frame % (70-setting.hard) == 0 && name.enemy =='abdul')
 		Bazooka.create(
 			Math.randomBetween(0, canvas.width - 50),
 			Math.randomBetween(0, canvas.height - 50), player)
 
-	if (setting.frame % 390 == 0 && name.enemy =='abdul')
+	if (setting.frame % (350-setting.hard)  == 0 && name.enemy =='abdul')
 		Car.create(
 			Math.randomBetween(-100, 0),
 			Math.randomBetween(canvas.height - 50, canvas.height,), player)
 
 	if (setting.frame % 500 == 0)
 			Item.create((Math.randomBetween(0,1) ===  0) ? 'heart':'bullet')
-
 
 	Building.array.forEach(building => { building.update(ctx); })
 	Cannon.array.forEach(can => { can.update(ctx); })
@@ -65,27 +66,21 @@ const loop = setInterval(() => {
 	player.update(ctx, canvas);
 	setting.frame++;
 
-	ctx.font = "40px serif";
-	ctx.fillText("⌚" + Math.floor(setting.frame / 30), canvas.width - 70, 170)
+	ctx.font = "40px arial";
+	ctx.fillStyle = "red";
+	ctx.fillText(" הניקוד שלך: "+ setting.score , canvas.width - 10, 170)
 
 	if (setting.lose) {
 		setting.theme.pause();
 		setting.theme.currentTime = 0;
 
-		if (!Building.array.find((build) => { return !build.destroyed })) {
 			Swal.fire({
-				icon: 'success',
-				title: '🏆ניצחון',
-				text: " וואו שרדת הרבה זמן מאחורי קווי האויב " + Math.floor(setting.frame / 30) + " שניות ",
+				icon:'success',
+				title: 'כל הכבוד',
+				text: "השגת " + setting.score + ' נקודות',
 			})
-		}
-		else {
-			Swal.fire({
-				icon: 'error',
-				title: '😔הפסדת',
-				text: 'אולי בפעם הבאה',
-			})
-		}
+		
+
 		setup()
 		setting.theme.pause();
 		setting.theme.currentTime = 0;
