@@ -7,11 +7,14 @@ import {player} from '../index.js';
 export default class Player extends Entity {
 	constructor(x, y, name) {
 		if (name === 'noah') {
-			super(x, y, 75, 75, sprites.noah,0)
-			this.speed = 12
+			super(x, y, 50, 80, sprites.noah,0)
+			this.speed = 11
 			this.bullets = 150;
+			this.rotateAmount = 0.2
 			this.hp = 4;
-			this.rotateAmount = 0.1
+			this.rotateAmount = 0.1;
+
+			this.propeller = new Entity(x,y,70,70,sprites.propeller,0) 
 		} else if (name === 'saar') {
 			super(x, y, 100, 100, sprites.saar,0)
 			this.speed = 8;
@@ -32,7 +35,7 @@ export default class Player extends Entity {
 			this.hp = 5;
 			this.safe = false;
 		} else {
-			super(x, y, 75, 75, sprites.cheater,0)
+			super(x, y, 75, 75, sprites.giora,0)
 			this.speed = 10;
 			this.bullets = 1;
 			this.rotateAmount = 0.05
@@ -67,7 +70,7 @@ export default class Player extends Entity {
 						this.angle + ((Math.PI * 2) / 10) * i)
 				}
 				break;
-			case 'cheater':
+			case 'giora':
 				for (let i = -5; i < 5; i++) {
 					Bullet.create(player,200,
 						this.angle + ((Math.PI * 2) / 10) * i)
@@ -99,12 +102,18 @@ export default class Player extends Entity {
 			ctx.fillText("❤️", canvas.width - 50 * i, 70)
 		ctx.fillText("🔥" + Math.ceil(this.bullets), canvas.width - 70, 120)
 
-		if (this.name == 'roi')
+		if (this.name == 'roi'){
 			if (this.safe) {
 				ctx.fillText('אתה בטוח', canvas.width - 70, 30)
 				this.bullets -= 1 / 33;
 				if (this.bullets <= 0) this.safe = false;
 			}
+		}else if(this.name == 'noah'){
+			this.propeller.angle += 0.2;
+			this.propeller.x = -this.propeller.width /2 + this.x + this.width / 2;
+			this.propeller.y = -this.propeller.height /2 + this.y + this.height / 2;
+			this.propeller.draw(ctx);
+		}
 
 		this.angle += this.rotate;
 		this.draw(ctx);
@@ -119,7 +128,7 @@ export default class Player extends Entity {
 		} else {
 			Explosion.create(this)
 		}
-		if (this.name != 'cheater') this.hp--;
+		if (this.name != 'giora') this.hp--;
 		if (this.hp <= 0) setting.lose = true;
 
 	}

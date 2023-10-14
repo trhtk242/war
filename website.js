@@ -4,6 +4,18 @@ const ctx = canvas.getContext("2d");
 canvas.width = innerWidth - 20;
 canvas.height = innerHeight - 20;
 
+const setting = {
+	score: 0,
+	frame: 0,
+	speedGame: 30,  //The game will be updated every 50 ms.
+	lose: false,
+	theme : new Audio('./sound/battleThemeA_0.mp3'),
+	sound:false,
+	player:'',
+	enemy:'',
+}
+
+
 const divSolider = document.getElementById('divSolider');
 const soliders = [
 	{
@@ -39,17 +51,17 @@ const soliders = [
 		disadventages: ['אין אפשרות לפגוע במדויק', 'רק 60 שניות של הגנה']
 	},
 	{
-		code: 'cheater',
+		code: 'giora',
 		name: "גיורא משה",
 		desc: "גיורא הוא טייס אגדי. הוא חזר מהמתים כדי להוכיח שמוות זו לא סיבה לפרוש",
-		img: "../img/website/Giyora_Moshe.jpg",
+		img: "../img/website/Giora_Moshe.jpg",
 		adventages: ['הכול'],
 		disadventages: ['אין']
 	},
 
 ]
 for (let i = 0; i < soliders.length; i++) {
-	if (soliders[i].code === 'cheater') {
+	if (soliders[i].code === 'giora') {
 		divSolider.innerHTML += `<!--<a class="dropdown-item" onclick="changeCharacter(${i},true)">${soliders[i].name}</a> -->`
 		continue;
 	}
@@ -83,7 +95,7 @@ for (let i = 0; i < enemies.length; i++) {
 console.log(' ברכות, אתה מספיק חכם בשביל לפתוח את המסוף. תכניס דמות_סודית() בשביל לקבל את הדמות הסודית')
 
 function דמות_סודית() {
-	changeSol(4)
+	changeCharacter(4,ture)
 }
 
 function changeCharacter(index,player){
@@ -110,7 +122,7 @@ function changeCharacter(index,player){
 		if (soliders[index].code == 'roi') RoiInst.hidden = false;
 		else RoiInst.hidden = true;
 	}
-	name[player?'player':'enemy'] = list[index].code
+	setting[player?'player':'enemy'] = list[index].code
 }
 changeCharacter(0,true)
 changeCharacter(0,false)
@@ -120,16 +132,6 @@ Math.randomBetween = (min, max) => {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-const setting = {
-	score: 0,
-	frame: 0,
-	speedGame: 30,  //The game will be updated every 50 ms.
-	lose: false,
-	theme : new Audio('./sound/battleThemeA_0.mp3'),
-	sound:false,
-	player:'',
-	enemy:'',
-}
 
 setting.theme.muted = true;
 

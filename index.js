@@ -55,8 +55,8 @@ const loop = setInterval(() => {
 	if (setting.frame % 500 == 0)
 			Item.create((Math.randomBetween(0,1) ===  0) ? 'heart':'bullet')
 
-	Item.array.forEach(it => { it.update(ctx); });
 	Building.array.forEach(building => { building.update(ctx); })
+	Item.array.forEach(it => { it.update(ctx); });
 	Bullet.array.forEach(bullet => { bullet.update(ctx); });
 	Cannon.array.forEach(can => { can.update(ctx); })
 	Car.array.forEach(building => { building.update(ctx); })

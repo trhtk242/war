@@ -36,12 +36,19 @@ export default {
         height:228,
         img:'../img/destroyed.png'
     },
-    noah:{
-        x:538,
-        y:15,
-        width:249,
-        height:302,
+    propeller:{
+        x:1067,
+        y:703,
+        width: 216,
+        height: 215,
         img:'../img/jets.png'
+    },
+    noah:{
+        x:903,
+        y:663,
+        width: 138,
+        height: 253,
+        img: '../img/jets.png'
     },
     ido:{
         x: 528, 
@@ -64,14 +71,21 @@ export default {
         height: 332,
         img:'../img/jets.png'
     },
-    cheater:{
+    giora:{
         x: 889, 
         y:15,
 	    width: 500,
 	    height: 336,
         img:'../img/jets.png'
     },
+    yedidya:{
+        x:1026,
+        y:405,
+        width: 248,
+        height: 220,
+        img:'../img/jets.png'
 
+    },
     bullet:{
         x: 148, 
         y:443,
