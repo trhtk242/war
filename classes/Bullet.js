@@ -11,7 +11,7 @@ export default class Bullet extends Entity{
         let sprite = (type === 'player') ? sprites.bulletGood : sprites.bullet
         super(x,y,width,height,sprite,angle);
 
-        this.speed = 12;
+        this.speed = 14;
         this.id = Bullet.array.length;
         this.type = type;
         this.spanlife = spanlife;
