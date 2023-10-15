@@ -20,7 +20,7 @@ export default class Player extends Entity {
 			case 'saar':
 				super(x, y, 100, 100, sprites.saar,0)
 				this.speed = 8;
-				this.bullets = 40;
+				this.bullets = 80;
 				this.rotateAmount = 0.05
 				this.hp = 4;
 				break;

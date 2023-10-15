@@ -50,7 +50,7 @@ export default class Bullet extends Entity{
                         this.delete();
                         building.delete();
                     }
-                    if(this.distance(nearest) > this.distance(building) &&(player.name === 'saar'|| player.name === 'giora')){
+                    if(this.distance(nearest) > this.distance(building) &&(player.id === 'saar'|| player.id === 'giora')){
                         this.angle = this.desireAng(building) 
                         nearest = building;
                     }
@@ -61,7 +61,7 @@ export default class Bullet extends Entity{
                         this.delete();
                         baz.delete();
                     }
-                    if(this.distance(nearest) > this.distance(baz) &&(player.name === 'saar'|| player.name === 'giora')){
+                    if(this.distance(nearest) > this.distance(baz) &&(player.id === 'saar'|| player.id === 'giora')){
                         this.angle = this.desireAng(baz) 
                         nearest = baz;
                     }
@@ -72,7 +72,7 @@ export default class Bullet extends Entity{
                         this.delete();
                         car.delete();
                     }
-                    if(this.distance(nearest) > this.distance(car) && (player.name === 'saar' || player.name === 'giora')){
+                    if(this.distance(nearest) > this.distance(car) && (player.id === 'saar' || player.id === 'giora')){
                         this.angle = this.desireAng(car) 
                         nearest = car;
                     }

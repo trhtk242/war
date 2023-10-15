@@ -41,7 +41,7 @@ const soliders = [
 		desc: "סער תמיד נמצא צעד אחד לפני אוייביו, כאשר עבורו דיוק זה שם המשחק",
 		img: "../img/website/Saar_Levi.jpg",
 		adventages: ['טילים מתכווננים'],
-		disadventages: ['מטוס איטי', 'קיבולת של 40 טילים']
+		disadventages: ['מטוס איטי']
 	},
 	{
 		code: 'roi',
