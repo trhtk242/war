@@ -33,7 +33,7 @@ export default class Entity{
         ctx.translate(x + this.width / 2, y + this.height / 2);
 		ctx.rotate(this.angle);
 		ctx.translate(-x - this.width / 2, -y - this.height / 2);
-		
+
         ctx.drawImage(
             this.img,
             this.sx,    this.sy,

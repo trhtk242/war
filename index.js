@@ -19,6 +19,15 @@ button.onclick = () => {
 	setup();
 }
 
+const portrait = window.matchMedia("(orientation: portrait)").matches;
+if (portrait) {
+	Swal.fire({
+		icon: 'error',
+		title: '...אופס',
+		text: 'אנא סובב את הטלפון למצב אנכי',
+	})
+}
+
 function setup() {
 	setting.lose = false;
 	setting.score = 0;
@@ -38,22 +47,22 @@ function setup() {
 setup();
 
 const loop = setInterval(() => {
-	if(canvas.hidden) return;
-	
+	if (canvas.hidden) return;
+
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-	if (setting.frame % (70-setting.hard) == 0 && setting.enemy =='abdul')
+	if (setting.frame % (70 - setting.hard) == 0 && setting.enemy == 'abdul')
 		Bazooka.create(
 			Math.randomBetween(0, canvas.width - 50),
 			Math.randomBetween(0, canvas.height - 50), player)
 
-	if (setting.frame % (350-setting.hard)  == 0 && setting.enemy =='abdul')
+	if (setting.frame % (350 - setting.hard) == 0 && setting.enemy == 'abdul')
 		Car.create(
 			Math.randomBetween(-100, 0),
 			Math.randomBetween(canvas.height - 50, canvas.height,), player)
 
 	if (setting.frame % 500 == 0)
-			Item.create((Math.randomBetween(0,1) ===  0) ? 'heart':'bullet')
+		Item.create((Math.randomBetween(0, 1) === 0) ? 'heart' : 'bullet')
 
 	Building.array.forEach(building => { building.update(ctx); })
 	Item.array.forEach(it => { it.update(ctx); });
@@ -66,22 +75,22 @@ const loop = setInterval(() => {
 	player.update(ctx, canvas);
 	setting.frame++;
 
-	ctx.font = "40px arial";
+	ctx.font = `${40 * setting.SCALE}px serif`;
 	ctx.fillStyle = "red";
-	ctx.fillText(" הניקוד שלך: "+ setting.score , canvas.width - 10, 170)
+	ctx.fillText(" הניקוד שלך: " + setting.score, canvas.width - 10 * setting.SCALE, 170 * setting.SCALE)
 
 	if (setting.lose) {
 		setting.theme.pause();
 		setting.theme.currentTime = 0;
 
-			Swal.fire({
-				icon:'success',
-				title: 'כל הכבוד',
-				text: "השגת " + setting.score + ' נקודות',
-				allowEnterKey : false,
-				confirmButtonText:'סבבה'
-			})
-		
+		Swal.fire({
+			icon: 'success',
+			title: 'כל הכבוד',
+			text: "השגת " + setting.score + ' נקודות',
+			allowEnterKey: false,
+			confirmButtonText: 'סבבה'
+		})
+
 
 		setup()
 		setting.theme.pause();
@@ -93,4 +102,4 @@ const loop = setInterval(() => {
 
 }, setting.speedGame)
 
-export {player};
+export { player };

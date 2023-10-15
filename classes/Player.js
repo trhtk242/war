@@ -5,44 +5,57 @@ import Explosion from "./Explosion.js";
 import {player} from '../index.js';
 
 export default class Player extends Entity {
-	constructor(x, y, name) {
-		if (name === 'noah') {
-			super(x, y, 50, 80, sprites.noah,0)
-			this.speed = 11
-			this.bullets = 150;
-			this.rotateAmount = 0.2
-			this.hp = 4;
-			this.rotateAmount = 0.1;
-
-			this.propeller = new Entity(x,y,70,70,sprites.propeller,0) 
-		} else if (name === 'saar') {
-			super(x, y, 100, 100, sprites.saar,0)
-			this.speed = 8;
-			this.bullets = 40;
-			this.rotateAmount = 0.05
-			this.hp = 4;
-		} else if (name === 'ido') {
-			super(x, y, 100, 100, sprites.ido,0)
-			this.speed = 8
-			this.bullets = 40;
-			this.rotateAmount = 0.2
-			this.hp = 4;
-		} else if (name === 'roi') {
-			super(x, y, 100, 100, sprites.roi,0)
-			this.speed = 10;
-			this.bullets = 60;
-			this.rotateAmount = 0.05
-			this.hp = 5;
-			this.safe = false;
-		} else {
-			super(x, y, 75, 75, sprites.giora,0)
-			this.speed = 10;
-			this.bullets = 1;
-			this.rotateAmount = 0.05
-			this.hp = 1;
+	constructor(x, y, id) {
+		switch (id) {
+			case 'noah':
+				super(x, y, 50, 80, sprites.noah,0)
+				this.speed = 11
+				this.bullets = 150;
+				this.rotateAmount = 0.2
+				this.hp = 4;
+				this.rotateAmount = 0.1;
+	
+				this.propeller = new Entity(x,y,70,70,sprites.propeller,0) 	
+				break;
+			case 'saar':
+				super(x, y, 100, 100, sprites.saar,0)
+				this.speed = 8;
+				this.bullets = 40;
+				this.rotateAmount = 0.05
+				this.hp = 4;
+				break;
+			case 'ido':
+				super(x, y, 100, 100, sprites.ido,0)
+				this.speed = 8
+				this.bullets = 40;
+				this.rotateAmount = 0.2
+				this.hp = 4;
+				break;
+			case 'roi':
+				super(x, y, 100, 100, sprites.roi,0)
+				this.speed = 10;
+				this.bullets = 60;
+				this.rotateAmount = 0.05
+				this.hp = 5;
+				this.safe = false;
+			break;
+			case 'yedidya':
+				super(x,y,100,100,sprites.yedidya,0);
+				this.speed = 10;
+				this.bullets = 40;
+				this.rotateAmount = 0.05;
+				this.hp = 3;
+				break;
+			default:
+				super(x, y, 75, 75, sprites.giora,0)
+				this.speed = 10;
+				this.bullets = 1;
+				this.rotateAmount = 0.05
+				this.hp = 1;
+				break;
 		}
 
-		this.name = name;
+		this.id = id;
 		this.rotate = 0;
 		this.type = 'player'
 	}
@@ -62,7 +75,7 @@ export default class Player extends Entity {
 
 	shoot() {
 		if (this.bullets <= 0) return;
-		switch (this.name) {
+		switch (this.id) {
 			case 'ido':
 				this.bullets--;
 				for (let i = -5; i < 5; i++) {
@@ -97,18 +110,19 @@ export default class Player extends Entity {
 
 		ctx.save();
 
-		ctx.font = "40px serif";
+		ctx.font = `${40 * setting.SCALE}px serif`;
 		for (let i = 0; i < this.hp; i++)
-			ctx.fillText("❤️", canvas.width - 50 * i, 70)
-		ctx.fillText("🔥" + Math.ceil(this.bullets), canvas.width - 70, 120)
+		ctx.fillText("❤️", canvas.width - (50 * i) * setting.SCALE, 70 * setting.SCALE)
+		ctx.fillText("🔥" + Math.ceil(this.bullets), canvas.width - 70 * setting.SCALE, 120 * setting.SCALE)
 
-		if (this.name == 'roi'){
+		if (this.id == 'roi') {
 			if (this.safe) {
-				ctx.fillText('אתה בטוח', canvas.width - 70, 30)
+				ctx.globalAlpha = 0.6;
+				ctx.fillText('אתה בטוח', canvas.width - 70 * setting.SCALE, 30 * setting.SCALE)
 				this.bullets -= 1 / 33;
 				if (this.bullets <= 0) this.safe = false;
 			}
-		}else if(this.name == 'noah'){
+		}else if(this.id == 'noah'){
 			this.propeller.angle += 0.2;
 			this.propeller.x = -this.propeller.width /2 + this.x + this.width / 2;
 			this.propeller.y = -this.propeller.height /2 + this.y + this.height / 2;
@@ -122,13 +136,13 @@ export default class Player extends Entity {
 	}
 
 	die(ang) {
-		if (this.name === 'roi' && this.safe) {
+		if (this.id === 'roi' && this.safe) {
 			Bullet.create(player,100, Math.PI + ang);
 			return;
 		} else {
 			Explosion.create(this)
 		}
-		if (this.name != 'giora') this.hp--;
+		if (this.id != 'giora') this.hp--;
 		if (this.hp <= 0) setting.lose = true;
 
 	}

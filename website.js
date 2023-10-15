@@ -9,10 +9,11 @@ const setting = {
 	frame: 0,
 	speedGame: 30,  //The game will be updated every 50 ms.
 	lose: false,
-	theme : new Audio('./sound/battleThemeA_0.mp3'),
-	sound:false,
-	player:'',
-	enemy:'',
+	theme: new Audio('./sound/battleThemeA_0.mp3'),
+	sound: false,
+	player: '',
+	enemy: '',
+	SCALE: canvas.width / 1260
 }
 
 
@@ -24,14 +25,14 @@ const soliders = [
 		desc: "עידו חושב שאת הכול אפשר לפתור בכוח, לא סתם המטוס שלו נקרא - שליחות קטלנית",
 		img: "../img/website/Ido_Raz.jpg",
 		adventages: ['מתקפת טילים קטלנית', 'מתמרן מהר בסיבובים'],
-		disadventages: ['מטוס איטי', 'קיבולת של 40 טילים','טווח טילים קצר']
+		disadventages: ['מטוס איטי', 'קיבולת של 40 טילים', 'טווח טילים קצר']
 	},
 	{
 		code: 'noah',
 		name: "נועה הדר",
 		desc: "נועה היא טייסת מסוק קרב מוכשרת, שמקוריות חשובה בשבילה הרבה יותר מציוד מתקדם",
 		img: "../img/website/Noah_Hadar.jpg",
-		adventages: ['מסוק קטן ומהיר', 'קיבולת של 150 טילים','טווח טילים ארוך'],
+		adventages: ['מסוק קטן ומהיר', 'קיבולת של 150 טילים', 'טווח טילים ארוך'],
 		disadventages: ['צריך לכוון']
 	},
 	{
@@ -83,16 +84,16 @@ const enemies = [
 		name: "עבדול מאליק",
 		desc: "עבדול מומחה בטילי קרקע אוויר. הכוחות שלו הם חתיכת כאב ראש",
 		img: "../img/website/Abdul_Malik.jpg",
-		adventages: ['חימוש מהיר וקטלני','טווח טילים ארוך'],
+		adventages: ['חימוש מהיר וקטלני', 'טווח טילים ארוך'],
 		disadventages: ['חיילים פשוטים בלבד']
 	},
 	{
-		code:'khalid',
-		name:'חאליד רהמן',
-		desc:'חאליד הוא אלוף הלוחמה הבנויה. הוא משתקם מהר ובהפתעה',
-		img:'../img/website/Khalid_Rahman.jpg',
-		adventages: ['תותחים חזקים','משתקם במהירות'],
-		disadventages: ['מעט יחידות','טווח טילים קצר']
+		code: 'khalid',
+		name: 'חאליד רהמן',
+		desc: 'חאליד הוא אלוף הלוחמה הבנויה. הוא משתקם מהר ובהפתעה',
+		img: '../img/website/Khalid_Rahman.jpg',
+		adventages: ['תותחים חזקים', 'משתקם במהירות'],
+		disadventages: ['מעט יחידות', 'טווח טילים קצר']
 	}
 
 ]
@@ -103,37 +104,37 @@ for (let i = 0; i < enemies.length; i++) {
 console.log(' ברכות, אתה מספיק חכם בשביל לפתוח את המסוף. תכניס דמות_סודית() בשביל לקבל את הדמות הסודית')
 
 function דמות_סודית() {
-	changeCharacter(4,ture)
+	changeCharacter(4, ture)
 }
 
-function changeCharacter(index,player){
+function changeCharacter(index, player) {
 	let id = player ? 'tzahal' : 'hamas';
 	let list = player ? soliders : enemies;
-	document.getElementById(id +'-name').innerHTML = list[index].name;
-	document.getElementById(id +'-img').src = list[index].img;
-	document.getElementById(id+'-img').alt = list[index].name;
-	document.getElementById(id+'-desc').innerHTML = list[index].desc;
+	document.getElementById(id + '-name').innerHTML = list[index].name;
+	document.getElementById(id + '-img').src = list[index].img;
+	document.getElementById(id + '-img').alt = list[index].name;
+	document.getElementById(id + '-desc').innerHTML = list[index].desc;
 
-	document.getElementById(id+'-list').innerHTML = `<li class="list-group-item active">יתרונות</li>`;
+	document.getElementById(id + '-list').innerHTML = `<li class="list-group-item active">יתרונות</li>`;
 	for (let el of list[index].adventages) {
-		document.getElementById(id+'-list').innerHTML += `
+		document.getElementById(id + '-list').innerHTML += `
 		<li class="list-group-item">${el}</li>`
 	}
 
-	document.getElementById(id+'-list').innerHTML += `<li class="list-group-item bg-danger">חסרונות</li>`;
+	document.getElementById(id + '-list').innerHTML += `<li class="list-group-item bg-danger">חסרונות</li>`;
 	for (let el of list[index].disadventages) {
-		document.getElementById(id+'-list').innerHTML += `
+		document.getElementById(id + '-list').innerHTML += `
 		<li class="list-group-item">${el}</li>`
 	}
-	if(player){
+	if (player) {
 		const RoiInst = document.getElementById('isRoi')
 		if (soliders[index].code == 'roi') RoiInst.hidden = false;
 		else RoiInst.hidden = true;
 	}
-	setting[player?'player':'enemy'] = list[index].code
+	setting[player ? 'player' : 'enemy'] = list[index].code
 }
-changeCharacter(0,true)
-changeCharacter(0,false)
+changeCharacter(0, true)
+changeCharacter(0, false)
 
 
 Math.randomBetween = (min, max) => {
