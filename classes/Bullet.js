@@ -3,7 +3,7 @@ import Building from "./Building.js";
 import Entity from "./Entity.js";
 import Explosion from "./Explosion.js";
 import Car from "./Car.js";
-import {player} from '../index.js';
+import {player} from '../game.js';
 import Bazooka from "./Bazooka.js";
 
 export default class Bullet extends Entity{

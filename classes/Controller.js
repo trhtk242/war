@@ -1,4 +1,4 @@
-import {player} from '../index.js'
+import {player} from '../game.js'
 
 export default class Circle{
 	constructor(x, y, r,type) {

@@ -45,10 +45,10 @@ const soliders = [
 		disadventages: ['מטוס איטי']
 	},
 	{
-		code: 'roi',
-		name: "רועי שוורץ",
-		desc: "רועי שוחר שלום מטבעו. הוא מאמין שההתקפה הכי טובה היא הגנה",
-		img: "../img/website/Roi_Scwartz.jpg",
+		code: 'boaz',
+		name: "בעז שוורץ",
+		desc: "בעז שוחר שלום מטבעו. הוא מאמין שההתקפה הכי טובה היא הגנה",
+		img: "../img/website/Boaz_Scwartz.jpg",
 		adventages: ['בעל 5 לבבות', 'לא צריך כדורים'],
 		disadventages: ['אין אפשרות לפגוע במדויק', 'רק 60 שניות של הגנה']
 	},
@@ -61,12 +61,20 @@ const soliders = [
 		disadventages: ['אין']
 	},
 	{
-		code:'winner',
+		code:'yehoka',
 		name:'ידידיה עוז',
 		desc: 'ידידה',
-		img: '../img/website/Winner.jpg',
-		adventages:[],
-		disadventages:[]
+		img: '../img/website/Yedidya_oz.jpg',
+		adventages:['יריות חזקות ומסוכנות','קופץ בגבולות המפה'],
+		disadventages:['חללית איטית','צריך לכוון']
+	},
+	{
+		code:'winner',
+		name:'רועי שטיין',
+		desc: 'רועי טייס עקשן שמכור לטיסה. השם שלו נישא בהערצה גם בפי חבריו וגם בפי אוייביו',
+		img: '../img/website/Roi_Stein.jpg',
+		adventages:['כדורים נטענים אוטומתית','מטוס קטן ומהיר'],
+		disadventages:['צריך לכוון']
 	}
 
 ]
@@ -95,7 +103,15 @@ const enemies = [
 		img: '../img/website/Khalid_Rahman.jpg',
 		adventages: ['תותחים חזקים', 'משתקם במהירות'],
 		disadventages: ['מעט יחידות', 'טווח טילים קצר']
-	}
+	},
+	// {
+	// 	code: 'aisha',
+	// 	name: 'עיישה אלדין',
+	// 	desc: 'מאז ומעולם עיישה אהבה את הים. זהו ביתה השני ושם היא כמעט בלתי מנוצחת',
+	// 	img: '../img/website/Aisha_AlDin.jpg',
+	// 	adventages: ['תותחים חזקים', 'משתקם במהירות'],
+	// 	disadventages: ['מעט יחידות', 'טווח טילים קצר']
+	// },
 
 ]
 for (let i = 0; i < enemies.length; i++) {
@@ -142,9 +158,9 @@ function changeCharacter(index, player) {
 
 
 	if (player) {
-		const RoiInst = document.getElementById('isRoi')
-		if (soliders[index].code == 'roi') RoiInst.hidden = false;
-		else RoiInst.hidden = true;
+		const boazInst = document.getElementById('isboaz')
+		if (soliders[index].code == 'boaz') boazInst.hidden = false;
+		else boazInst.hidden = true;
 	}
 	setting[player ? 'player' : 'enemy'] = list[index].code
 }

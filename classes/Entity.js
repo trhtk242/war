@@ -1,5 +1,5 @@
-//The first class,all classes are extended from it.
-import {player} from '../index.js';
+//The first class, whick all classes are extended from it.
+import {player} from '../game.js';
 export default class Entity{
     constructor(x,y,width,height,sprite,angle){
         this.x = x;

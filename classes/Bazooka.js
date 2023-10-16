@@ -1,7 +1,7 @@
 import sprites from "../sprites.js";
 import Bullet from "./Bullet.js";
 import Entity from './Entity.js';
-import {player} from '../index.js';
+import {player} from '../game.js';
 
 export default class Bazooka extends Entity {
     constructor(x,y,target){

@@ -2,7 +2,7 @@
 import Entity from "./Entity.js";
 import sprites from "../sprites.js";
 import Cannon from "./Cannon.js";
-import { player } from "../index.js";
+import { player } from "../game.js";
 
 export default class Building extends Entity{
     constructor(x,y,type,cannon){
@@ -36,7 +36,7 @@ export default class Building extends Entity{
     }
 
     delete(){
-        setting.score += 3;
+        setting.score += 2;
         this.destroyed = true;
         this.img.src = '../img/destroyed.png';
         

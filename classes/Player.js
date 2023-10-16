@@ -1,18 +1,16 @@
 import Entity from "./Entity.js";
 import sprites from "../sprites.js";
 import Bullet from './Bullet.js';
-import Car from "./Car.js";
 import Ball from "./Ball.js";
 import Explosion from "./Explosion.js";
-import Building from "./Building.js";
-import { player } from '../index.js';
+import { player } from '../game.js';
 
 export default class Player extends Entity {
 	constructor(x, y, id) {
 		switch (id) {
 			case 'noah':
 				super(x, y, 50, 80, sprites.noah, 0)
-				this.speed = 11
+				this.speed = 10
 				this.bullets = 150;
 				this.rotateAmount = 0.2
 				this.hp = 4;
@@ -34,18 +32,26 @@ export default class Player extends Entity {
 				this.rotateAmount = 0.2
 				this.hp = 4;
 				break;
-			case 'roi':
-				super(x, y, 100, 100, sprites.roi, 0)
+			case 'boaz':
+				super(x, y, 100, 100, sprites.boaz, 0)
 				this.speed = 10;
 				this.bullets = 60;
 				this.rotateAmount = 0.05
 				this.hp = 5;
 				this.safe = false;
 				break;
-			case 'winner':
-				super(x, y, 100, 100, sprites.winner, 0);
-				this.speed = 10;
+			case 'yehoka':
+				super(x, y, 100, 100, sprites.yehoka, 0);
+				this.speed = 8;
 				this.bullets = 80;
+				this.rotateAmount = 0.2;
+				this.hp = 4;
+				break;
+			case 'winner':
+				super(x, y, 60, 75, sprites.winner, 0);
+				this.speed = 12;
+				this.bullets = 1;
+				this.cooldown = 100;
 				this.rotateAmount = 0.2;
 				this.hp = 4;
 				break;
@@ -70,9 +76,17 @@ export default class Player extends Entity {
 		this.y += this.speed * Math.cos(this.angle);
 
 		if (this.outside()) {
-			this.x = x;
-			this.y = y;
-			this.angle += 0.5;
+			if(this.id === 'yehoka'){
+				if(this.x <= 0) this.x = canvas.width - this.width
+				if(this.x >= canvas.width) this.x = 0;
+
+				if(this.y <= 0) this.y = canvas.height - this.height
+				if(this.y >= canvas.height) this.y = 0;
+			}else{
+				this.x = x;
+				this.y = y;
+				this.angle += 0.5;
+			}
 		}
 	}
 
@@ -92,7 +106,7 @@ export default class Player extends Entity {
 						this.angle + ((Math.PI * 2) / 10) * i)
 				}
 				break;
-			case 'roi':
+			case 'boaz':
 				this.safe = !this.safe;
 				if (this.bullets <= 0) this.safe = false;
 				break;
@@ -101,10 +115,16 @@ export default class Player extends Entity {
 				Bullet.create(player, 100, this.angle);
 				this.bullets--;
 				break;
-			case 'winner':
+			case 'yehoka':
 				this.bullets--;
 				Ball.create(player,100)
-
+				break;
+			case 'winner':
+				if (this.cooldown <= 0) return;
+				Bullet.create(player, 35, this.angle - 0.2);
+				Bullet.create(player, 35, this.angle + 0.2);
+				Bullet.create(player, 35, this.angle);
+				this.cooldown -= 10;
 				break;
 			default:
 				Bullet.create(player, 40);
@@ -113,35 +133,61 @@ export default class Player extends Entity {
 		}
 	}
 
+    barcooldown(){
+        let x = canvas.width / 2  - 20  * setting.SCALE
+        let y = 10 * setting.SCALE
+
+        ctx.save();
+
+        ctx.fillStyle = 'yellow'
+        let width = 300*(this.cooldown/100)* setting.SCALE
+        if(width < 0){
+            width = 0
+        }
+        ctx.fillRect(x-150* setting.SCALE,y,width,20* setting.SCALE)
+
+		ctx.lineWidth = 5;
+        ctx.strokeStyle = 'black'
+        ctx.strokeRect(x-150* setting.SCALE,y,300* setting.SCALE,20* setting.SCALE)
+
+        ctx.restore();
+    }
+
 	update(ctx, canvas) {
 		this.goTheWayWereFacing();
 
 		ctx.save();
 
 		ctx.font = `${30 * setting.SCALE}px serif`;
-		for (let i = 0; i < this.hp; i++)
-			ctx.fillText("❤️", canvas.width - (50 * i) * setting.SCALE, 30 * setting.SCALE)
-		ctx.fillText("🔥" + Math.ceil(this.bullets), canvas.width / 2  - 20  * setting.SCALE, 30 * setting.SCALE)
+			for (let i = 0; i < this.hp; i++)
+				ctx.fillText("❤️", canvas.width - (50 * i) * setting.SCALE, 30 * setting.SCALE)
 
-		this.angle += this.rotate;
-		this.draw(ctx);
-
+		if(this.id == 'winner'){
+			this.barcooldown();
+			if(this.cooldown < 100) this.cooldown+=0.5;
+		}else{
+			ctx.fillText("🔥" + Math.ceil(this.bullets), canvas.width / 2  - 20  * setting.SCALE, 30 * setting.SCALE)
 		
-		if (this.id == 'roi') {
+		}
+
+		if (this.id == 'boaz') {
 			if (this.safe) {
-				ctx.globalAlpha = 0.6;
-				ctx.fillText('אתה בטוח', canvas.width - 70 * setting.SCALE, 30 * setting.SCALE)
+				ctx.fillText('אתה בטוח', canvas.width - 70 * setting.SCALE, 70 * setting.SCALE)
 				this.bullets -= 1 / 33;
 				if (this.bullets <= 0) this.safe = false;
+				ctx.globalAlpha = 0.6;
 			}
 		} else if (this.id == 'noah') {
 			this.propeller.angle += 0.2;
 			this.propeller.x = -this.propeller.width / 2 + this.x + this.width / 2;
 			this.propeller.y = -this.propeller.height / 2 + this.y + this.height / 2;
 			this.propeller.draw(ctx);
-		} else if(this.id == 'winner'){
+		} else if(this.id == 'yehoka'){
 
 		}
+
+		this.angle += this.rotate;
+		this.draw(ctx);
 
 
 		ctx.restore();
@@ -149,7 +195,7 @@ export default class Player extends Entity {
 	}
 
 	die(ang) {
-		if (this.id === 'roi' && this.safe) {
+		if (this.id === 'boaz' && this.safe) {
 			Bullet.create(player, 100, Math.PI + ang);
 			return;
 		} else {

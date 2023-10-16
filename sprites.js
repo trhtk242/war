@@ -64,7 +64,7 @@ export default {
         height: 285,
         img:'../img/jets.png'
     },
-    roi:{
+    boaz:{
         x: 27, 
         y:22,
         width: 451,
@@ -147,7 +147,7 @@ export default {
         height: 178,
         img: './img/jets.png'
     },
-    winner:{
+    yehoka:{
         x:1059,
         y:373,
         width: 173,
@@ -159,6 +159,13 @@ export default {
         y:372,
         width: 48,
         height: 48,
+        img: './img/jets.png'
+    },
+    winner:{
+        x:912,
+        y:403,
+        width: 115,
+        height: 172,
         img: './img/jets.png'
     }
 }

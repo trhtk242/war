@@ -1,4 +1,4 @@
-import {player} from './index.js';
+import {player} from './game.js';
 import Controller from './classes/Controller.js'
 
 document.addEventListener("keydown", keydown);

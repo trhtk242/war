@@ -1,7 +1,7 @@
 import sprites from "../sprites.js";
 import Bullet from "./Bullet.js";
 import Entity from './Entity.js';
-import {player} from '../index.js';
+import {player} from '../game.js';
 
 export default class Cannon extends Entity {
     constructor(building,target){
@@ -18,7 +18,7 @@ export default class Cannon extends Entity {
     }
 
     delete(){
-        setting.score+=2;
+        setting.score+=1;
         delete Cannon.array[this.id];
     }
 
@@ -32,12 +32,12 @@ export default class Cannon extends Entity {
     update(ctx){
         this.cooldown --;
         
-        if(this.distance(player) <= 300)
+        if(this.distance(player) <= 350)
             this.angle = this.desireAng();
 
         if(this.cooldown === 0){
             for (let i = 0; i < 3; i++) {
-                setTimeout(()=>Bullet.create(this,20),100*i)
+                setTimeout(()=>Bullet.create(this,30),100*i)
                 
             }
             this.cooldown = Math.randomBetween(150,200);

@@ -1,6 +1,6 @@
 import sprites from "../sprites.js";
 import Entity from "./Entity.js";
-import {player} from "../index.js";
+import {player} from "../game.js";
 
 export default class Item extends Entity{
     constructor(x,y,type){
@@ -21,7 +21,10 @@ export default class Item extends Entity{
     update(ctx){
         if(this.collision(player)){
             this.delete();
-            if(this.type === 'bullet')player.bullets += 10;
+            if(this.type === 'bullet'){
+                if(player.id == 'winner') player.cooldown = 100;
+                else player.bullets += 10;
+            }
             else if(this.type === 'heart')player.hp ++;
         }
         this.draw(ctx);
