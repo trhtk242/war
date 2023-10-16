@@ -167,5 +167,20 @@ export default {
         width: 115,
         height: 172,
         img: './img/jets.png'
-    }
+    },
+    ship1:{
+        x:779,
+        y:388,
+        width: 99,
+        height: 185,
+        img: './img/jets.png'
+    },
+    ship2:{
+        x:667,
+        y: 364,
+        width: 91,
+        height: 239,
+        img: './img/jets.png'
+
+    }    
 }

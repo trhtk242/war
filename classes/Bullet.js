@@ -5,6 +5,7 @@ import Explosion from "./Explosion.js";
 import Car from "./Car.js";
 import {player} from '../game.js';
 import Bazooka from "./Bazooka.js";
+import Ship from "./Ship.js";
 
 export default class Bullet extends Entity{
     constructor(x,y,angle,width,height,type,spanlife,sprit = undefined) {
@@ -77,6 +78,17 @@ export default class Bullet extends Entity{
                     if(this.distance(nearest) > this.distance(car) && (player.id === 'saar' || player.id === 'giora')){
                         this.angle = this.desireAng(car) 
                         nearest = car;
+                    }
+                })
+                Ship.array.forEach(ship =>{
+                    if(this.collision(ship)){
+                        Explosion.create(this);
+                        this.delete();
+                        ship.delete();
+                    }
+                    if(this.distance(nearest) > this.distance(ship) && (player.id === 'saar' || player.id === 'giora')){
+                        this.angle = this.desireAng(ship) 
+                        nearest = ship;
                     }
                 })
                 break;

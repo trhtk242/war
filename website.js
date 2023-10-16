@@ -1,16 +1,24 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
+const soundSwith = document.getElementById('soundSwith');
 
 canvas.width = innerWidth - 20;
 canvas.height = innerHeight - 20;
+
+const sound = document.cookie
+	.split("; ")
+	.find((row) => row.startsWith("sound="))
+	?.split("=")[1];
+
+soundSwith.checked = !(/^false$/i.test(sound));
 
 const setting = {
 	score: 0,
 	frame: 0,
 	speedGame: 30,  //The game will be updated every 50 ms.
 	lose: false,
-	theme: new Audio('./sound/battleThemeA_0.mp3'),
-	sound: false,
+	theme: new Audio('./sound/battleTheme-abdul.mp3'),
+	sound : (sound) ? sound : true,
 	player: '',
 	enemy: '',
 	SCALE: canvas.width / 1260,
@@ -62,9 +70,9 @@ const soliders = [
 	},
 	{
 		code:'yehoka',
-		name:'ידידיה עוז',
-		desc: 'ידידה',
-		img: '../img/website/Yedidya_oz.jpg',
+		name:'יהוקפץ עוז',
+		desc: 'יהוקפץ בכלל אסטרונאוט שנשלח לתגבורת. החללית שלו משנה את כללי המשחק',
+		img: '../img/website/Yehoka_oz.jpg',
 		adventages:['יריות חזקות ומסוכנות','קופץ בגבולות המפה'],
 		disadventages:['חללית איטית','צריך לכוון']
 	},
@@ -104,14 +112,14 @@ const enemies = [
 		adventages: ['תותחים חזקים', 'משתקם במהירות'],
 		disadventages: ['מעט יחידות', 'טווח טילים קצר']
 	},
-	// {
-	// 	code: 'aisha',
-	// 	name: 'עיישה אלדין',
-	// 	desc: 'מאז ומעולם עיישה אהבה את הים. זהו ביתה השני ושם היא כמעט בלתי מנוצחת',
-	// 	img: '../img/website/Aisha_AlDin.jpg',
-	// 	adventages: ['תותחים חזקים', 'משתקם במהירות'],
-	// 	disadventages: ['מעט יחידות', 'טווח טילים קצר']
-	// },
+	{
+		code: 'aisha',
+		name: 'עיישה אלדין',
+		desc: 'מאז ומעולם עיישה אהבה את הים. זהו ביתה השני ושם היא כמעט בלתי מנוצחת',
+		img: '../img/website/Aisha_AlDin.jpg',
+		adventages: ['תותחים חזקים', 'משתקם במהירות'],
+		disadventages: ['מעט יחידות', 'טווח טילים קצר']
+	},
 
 ]
 for (let i = 0; i < enemies.length; i++) {
@@ -175,7 +183,13 @@ Math.randomBetween = (min, max) => {
 
 setting.theme.muted = true;
 
-const soundSwith = document.getElementById('soundSwith');
 soundSwith.onchange = () => {
 	setting.sound = !setting.sound;
+	document.cookie = `sound=${setting.sound}`	
+	const sound = document.cookie
+	.split("; ")
+	.find((row) => row.startsWith("sound="))
+	?.split("=")[1];
+
+soundSwith.checked = (/^true$/i.test(sound));
 }

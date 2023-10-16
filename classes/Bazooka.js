@@ -4,13 +4,13 @@ import Entity from './Entity.js';
 import {player} from '../game.js';
 
 export default class Bazooka extends Entity {
-    constructor(x,y,target){
+    constructor(x,y,target,cooldown){
         super(x,y,30,40,sprites.bazooka, Math.randomBetween(0,Math.PI))
         this.id = Bazooka.array.length;
         
         this.target = target;
-
-        this.cooldown = 100;
+        this.maxCooldwon = cooldown;
+        this.cooldown = cooldown;
         this.type = 'bazooka';
     }
 
@@ -34,7 +34,7 @@ export default class Bazooka extends Entity {
 
         if(this.cooldown === 0){
             Bullet.create(this,35);
-            this.cooldown = 100;
+            this.cooldown = this.maxCooldwon;
         }
         ctx.save();
 
@@ -46,7 +46,8 @@ export default class Bazooka extends Entity {
 }
 
 Bazooka.array = [];
-Bazooka.create = (x,y,target) => {
-    let bazook = new Bazooka(x,y,target);
+Bazooka.create = (x,y,target,cooldown = 100) => {
+    let bazook = new Bazooka(x,y,target,cooldown);
     Bazooka.array.push(bazook);
+    return bazook;
 }

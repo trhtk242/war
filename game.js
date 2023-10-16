@@ -8,6 +8,7 @@ import Bazooka from "./classes/Bazooka.js";
 import Item from "./classes/Item.js";
 import Ball from "./classes/Ball.js";
 import Cannon from "./classes/Cannon.js";
+import Ship from "./classes/Ship.js";
 
 let player;
 
@@ -24,7 +25,8 @@ function setup() {
 	Ball.array = [];
 	Item.array = [];
 	Car.deleteAll();
-
+	Ship.deleteAll();
+	
 	setting.frame = 0;
 	createCity();
 }
@@ -36,12 +38,28 @@ function loop(){
 
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-	if (setting.frame % (70 - setting.hard) == 0 && setting.enemy == 'abdul')
+	if (setting.frame % 70 == 0 && setting.enemy == 'abdul')
 		Bazooka.create(
 			Math.randomBetween(0, canvas.width - 200),
 			Math.randomBetween(0, canvas.height - 200), player)
 
-	if (setting.frame % (350 - setting.hard) == 0 && setting.enemy == 'abdul')
+	if (setting.frame % 300 == 0 && setting.enemy == 'aisha'){
+		Ship.create(
+			Math.randomBetween(0, canvas.width - 200),
+			Math.randomBetween(0, canvas.height - 200),2, player)
+		Ship.create(
+			Math.randomBetween(0, canvas.width - 200),
+			Math.randomBetween(0, canvas.height - 200),2, player)
+		
+	}
+
+			
+	if (setting.frame % 200 == 0 && setting.enemy == 'aisha')
+		Ship.create(
+			Math.randomBetween(0, canvas.width - 200),
+			Math.randomBetween(0, canvas.height - 200),1, player)
+
+	if (setting.frame % 350 == 0 && setting.enemy != 'aisha')
 		Car.create(
 			Math.randomBetween(-100, 0),
 			Math.randomBetween(canvas.height - 50, canvas.height,), player)
@@ -53,6 +71,7 @@ function loop(){
 	Item.array.forEach(it => { it.update(ctx); });
 	Ball.array.forEach(bullet => { bullet.update(ctx); });
 	Bullet.array.forEach(bullet => { bullet.update(ctx); });
+	Ship.array.forEach(ship => { ship.update(ctx); })
 	Cannon.array.forEach(can => { can.update(ctx); })
 	Car.array.forEach(building => { building.update(ctx); })
 	Bazooka.array.forEach(baz => { baz.update(ctx); })

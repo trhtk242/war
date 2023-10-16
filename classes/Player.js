@@ -127,7 +127,7 @@ export default class Player extends Entity {
 				this.cooldown -= 10;
 				break;
 			default:
-				Bullet.create(player, 40);
+				Bullet.create(player, 60);
 				this.bullets--;
 				break;
 		}

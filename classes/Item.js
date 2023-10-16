@@ -12,9 +12,13 @@ export default class Item extends Entity{
 
         this.type = type;
         this.id = Item.array.length;
+
     }
 
     delete(){
+        let audio = new Audio('../sound/item.mp3');
+        if(setting.sound) audio.play();
+        audio.volume = 0.2;
         delete Item.array[this.id];
     }
 
