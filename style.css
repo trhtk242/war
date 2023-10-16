@@ -10,24 +10,31 @@ body {
 	color: black;
 }
 
+button {
+	margin: 10px;
+}
+
 img {
 	height: 420px;
-	background: #aaa;
+	/* background: #aaa; */
 	border-radius: 20px 0;
 }
 
-.header {
-	background-image: url('./img/website/Israel.jpg');
+#vs {
+	height: 300px;
 
-	color: rgb(37, 158, 86);
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-size: 100% 100%;
 }
 
-.footer {
-	background-image: url('./img/website/Army.jpg');
-	color: rgb(37, 158, 86);
+@media screen and (max-width: 800px) {
+	img {
+		height: 250px;
+	}
+
+	#vs {
+		height: 200px;
+	}
+
+
 }
 
 #canvas {
@@ -37,6 +44,6 @@ img {
 	height: 100%;
 }
 
-.custom-switch{
+.custom-switch {
 	padding: 20px;
 }

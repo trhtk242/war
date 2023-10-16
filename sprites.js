@@ -146,5 +146,19 @@ export default {
         width: 94,
         height: 178,
         img: './img/jets.png'
+    },
+    winner:{
+        x:1059,
+        y:373,
+        width: 173,
+        height: 262,
+        img: './img/jets.png'
+    },
+    ball:{
+        x:180,
+        y:372,
+        width: 48,
+        height: 48,
+        img: './img/jets.png'
     }
 }

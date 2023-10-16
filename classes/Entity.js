@@ -30,16 +30,16 @@ export default class Entity{
         // x-=this.width/2
         // y-=this.height/2
 
-        ctx.translate(x + this.width / 2, y + this.height / 2);
+        ctx.translate((x + this.width / 2)*setting.SCALE, (y + this.height / 2)*setting.SCALE);
 		ctx.rotate(this.angle);
-		ctx.translate(-x - this.width / 2, -y - this.height / 2);
+		ctx.translate((-x - this.width / 2)*setting.SCALE,( -y - this.height / 2)*setting.SCALE);
 
         ctx.drawImage(
             this.img,
             this.sx,    this.sy,
             this.swidth,this.sheight,
-            x,     y,
-            this.width, this.height)
+            x*setting.SCALE,     y*setting.SCALE,
+            this.width*setting.SCALE, this.height*setting.SCALE)
 
         ctx.restore();
     }

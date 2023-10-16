@@ -28,12 +28,8 @@
 <body>
 	<div id="opening-screen">
 		<div class="container" style="margin-top:30px">
-			<div class="text-center " style="margin-bottom:30px">
-				<h1>⚔️</h1>
-			</div>
 			<div class="row">
 				<div class="col-sm-4">
-					<h2>הדמות שלך</h2>
 					<div class="dropdown">
 						<button class="btn btn-success dropdown-toggle" type="button" id="dropdownSolider"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -41,16 +37,17 @@
 						</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownSolider" id="divSolider">
 						</div>
+						<button id="tzahal-info" type="button" class="btn btn-info">מידע על הדמות</button>
 					</div>
-					<h5 id="tzahal-name">סער לוי</h5>
 					<img id="tzahal-img" src="" alt="israeli solider" />
+					<h5 id="tzahal-name">סער לוי</h5>
 					<p id="tzahal-desc"></p>
-					<ul class="list-group" id="tzahal-list">
+					<!-- <ul class="list-group" id="tzahal-list"> -->
 					</ul><br>
 					<hr class="d-sm-none">
 				</div>
 				<div class="col-sm-4">
-					<button type="button" id="btn-start" class="btn btn-danger btn-lg btn-block">שחקו עכשיו!</button>
+					<button type="button" id="btn-start" class="btn btn-danger btn-lg btn-block"> שחקו עכשיו⚔️</button>
 
 					<div class="custom-control custom-switch">
 						<input type="checkbox" class="custom-control-input " id="soundSwith">
@@ -64,16 +61,17 @@
 							<li class="list-group-item">שימו לב שאתם לא מבזבזים את הזמן הבטוח</li>
 							<li class="list-group-item">במקום לקבל כדורים, תקבלו יותר זמן בטוח</li><br>
 						</span>
-						<li class="list-group-item active">?איך משחקים</li>
+						<!-- <li class="list-group-item active">?איך משחקים</li>
 						<li class="list-group-item">תזוזה בעזרת החיצים ➡️⬅️ </li>
 						<li class="list-group-item">רווח בשביל לירות</li>
 						<li class="list-group-item">השיגו את מספר הנקודות הגדול ביותר</li>
 						<li class="list-group-item">אספו לבבות וכדורים בשביל להמשיך לשחק</li>
-						<li class="list-group-item">טיפ: השמידו את המכוניות לפני הגעתם ליעד</li>
+						<li class="list-group-item">טיפ: השמידו את המכוניות לפני הגעתם ליעד</li> -->
 					</ul>
+					<img id="vs" class="d-flex justify-content-center" src="./img/website/vs.png" alt="vs"
+						onclick="gen.next()" />
 				</div>
 				<div class="col-sm-4">
-					<h2>דמות האויב</h2>
 					<div class="dropdown">
 						<button class="btn btn-success dropdown-toggle" type="button" id="dropdownEnemy"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -81,12 +79,13 @@
 						</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownEnemy" id="divEnemy">
 						</div>
+						<button id="hamas-info" type="button" class="btn btn-info">מידע על הדמות</button>
 					</div>
-					<h5 id="hamas-name">עבדול מאליק</h5>
 					<img id="hamas-img" src="" alt="Hamas enemy" />
+					<h5 id="hamas-name">עבדול מאליק</h5>
 					<p id="hamas-desc"></p>
-					<ul class="list-group" id="hamas-list">
-					</ul><br>
+					<!-- <ul class="list-group" id="hamas-list">
+					</ul><br> -->
 					<hr class="d-sm-none">
 				</div>
 			</div>

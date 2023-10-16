@@ -1,53 +1,56 @@
 import Entity from "./Entity.js";
 import sprites from "../sprites.js";
 import Bullet from './Bullet.js';
+import Car from "./Car.js";
+import Ball from "./Ball.js";
 import Explosion from "./Explosion.js";
-import {player} from '../index.js';
+import Building from "./Building.js";
+import { player } from '../index.js';
 
 export default class Player extends Entity {
 	constructor(x, y, id) {
 		switch (id) {
 			case 'noah':
-				super(x, y, 50, 80, sprites.noah,0)
+				super(x, y, 50, 80, sprites.noah, 0)
 				this.speed = 11
 				this.bullets = 150;
 				this.rotateAmount = 0.2
 				this.hp = 4;
 				this.rotateAmount = 0.1;
-	
-				this.propeller = new Entity(x,y,70,70,sprites.propeller,0) 	
+
+				this.propeller = new Entity(x, y, 70, 70, sprites.propeller, 0)
 				break;
 			case 'saar':
-				super(x, y, 100, 100, sprites.saar,0)
+				super(x, y, 100, 100, sprites.saar, 0)
 				this.speed = 8;
 				this.bullets = 80;
 				this.rotateAmount = 0.05
 				this.hp = 4;
 				break;
 			case 'ido':
-				super(x, y, 100, 100, sprites.ido,0)
+				super(x, y, 100, 100, sprites.ido, 0)
 				this.speed = 8
 				this.bullets = 40;
 				this.rotateAmount = 0.2
 				this.hp = 4;
 				break;
 			case 'roi':
-				super(x, y, 100, 100, sprites.roi,0)
+				super(x, y, 100, 100, sprites.roi, 0)
 				this.speed = 10;
 				this.bullets = 60;
 				this.rotateAmount = 0.05
 				this.hp = 5;
 				this.safe = false;
-			break;
-			case 'yedidya':
-				super(x,y,100,100,sprites.yedidya,0);
+				break;
+			case 'winner':
+				super(x, y, 100, 100, sprites.winner, 0);
 				this.speed = 10;
-				this.bullets = 40;
-				this.rotateAmount = 0.05;
-				this.hp = 3;
+				this.bullets = 80;
+				this.rotateAmount = 0.2;
+				this.hp = 4;
 				break;
 			default:
-				super(x, y, 75, 75, sprites.giora,0)
+				super(x, y, 75, 75, sprites.giora, 0)
 				this.speed = 10;
 				this.bullets = 1;
 				this.rotateAmount = 0.05
@@ -79,13 +82,13 @@ export default class Player extends Entity {
 			case 'ido':
 				this.bullets--;
 				for (let i = -5; i < 5; i++) {
-					Bullet.create(player,20,
+					Bullet.create(player, 20,
 						this.angle + ((Math.PI * 2) / 10) * i)
 				}
 				break;
 			case 'giora':
 				for (let i = -5; i < 5; i++) {
-					Bullet.create(player,200,
+					Bullet.create(player, 200,
 						this.angle + ((Math.PI * 2) / 10) * i)
 				}
 				break;
@@ -94,12 +97,17 @@ export default class Player extends Entity {
 				if (this.bullets <= 0) this.safe = false;
 				break;
 			case 'noah':
-				Bullet.create(player,100,this.angle + Math.PI);
-				Bullet.create(player,100,this.angle);
+				Bullet.create(player, 100, this.angle + Math.PI);
+				Bullet.create(player, 100, this.angle);
 				this.bullets--;
 				break;
+			case 'winner':
+				this.bullets--;
+				Ball.create(player,100)
+
+				break;
 			default:
-				Bullet.create(player,40);
+				Bullet.create(player, 40);
 				this.bullets--;
 				break;
 		}
@@ -110,11 +118,15 @@ export default class Player extends Entity {
 
 		ctx.save();
 
-		ctx.font = `${40 * setting.SCALE}px serif`;
+		ctx.font = `${30 * setting.SCALE}px serif`;
 		for (let i = 0; i < this.hp; i++)
-		ctx.fillText("❤️", canvas.width - (50 * i) * setting.SCALE, 70 * setting.SCALE)
-		ctx.fillText("🔥" + Math.ceil(this.bullets), canvas.width - 70 * setting.SCALE, 120 * setting.SCALE)
+			ctx.fillText("❤️", canvas.width - (50 * i) * setting.SCALE, 30 * setting.SCALE)
+		ctx.fillText("🔥" + Math.ceil(this.bullets), canvas.width / 2  - 20  * setting.SCALE, 30 * setting.SCALE)
 
+		this.angle += this.rotate;
+		this.draw(ctx);
+
+		
 		if (this.id == 'roi') {
 			if (this.safe) {
 				ctx.globalAlpha = 0.6;
@@ -122,22 +134,23 @@ export default class Player extends Entity {
 				this.bullets -= 1 / 33;
 				if (this.bullets <= 0) this.safe = false;
 			}
-		}else if(this.id == 'noah'){
+		} else if (this.id == 'noah') {
 			this.propeller.angle += 0.2;
-			this.propeller.x = -this.propeller.width /2 + this.x + this.width / 2;
-			this.propeller.y = -this.propeller.height /2 + this.y + this.height / 2;
+			this.propeller.x = -this.propeller.width / 2 + this.x + this.width / 2;
+			this.propeller.y = -this.propeller.height / 2 + this.y + this.height / 2;
 			this.propeller.draw(ctx);
+		} else if(this.id == 'winner'){
+
 		}
 
-		this.angle += this.rotate;
-		this.draw(ctx);
+
 		ctx.restore();
 
 	}
 
 	die(ang) {
 		if (this.id === 'roi' && this.safe) {
-			Bullet.create(player,100, Math.PI + ang);
+			Bullet.create(player, 100, Math.PI + ang);
 			return;
 		} else {
 			Explosion.create(this)

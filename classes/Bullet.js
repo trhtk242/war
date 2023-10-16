@@ -7,8 +7,10 @@ import {player} from '../index.js';
 import Bazooka from "./Bazooka.js";
 
 export default class Bullet extends Entity{
-    constructor(x,y,angle,width,height,type,spanlife) {
-        let sprite = (type === 'player') ? sprites.bulletGood : sprites.bullet
+    constructor(x,y,angle,width,height,type,spanlife,sprit = undefined) {
+
+        let sprite = sprit;
+        if(sprite === undefined) sprite = (type === 'player') ? sprites.bulletGood : sprites.bullet
         super(x,y,width,height,sprite,angle);
 
         this.speed = 14;

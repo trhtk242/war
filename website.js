@@ -13,7 +13,8 @@ const setting = {
 	sound: false,
 	player: '',
 	enemy: '',
-	SCALE: canvas.width / 1260
+	SCALE: canvas.width / 1260,
+	controllers: []
 }
 
 
@@ -59,14 +60,14 @@ const soliders = [
 		adventages: ['הכול'],
 		disadventages: ['אין']
 	},
-	// {
-	// 	code:'yedidya',
-	// 	name:'ידידיה עוז',
-	// 	desc: 'ידידה ',
-	// 	img: '../img/website/Yedidya_oz.jpg',
-	// 	adventages:[],
-	// 	disadventages:[]
-	// }
+	{
+		code:'winner',
+		name:'ידידיה עוז',
+		desc: 'ידידה',
+		img: '../img/website/Winner.jpg',
+		adventages:[],
+		disadventages:[]
+	}
 
 ]
 for (let i = 0; i < soliders.length; i++) {
@@ -101,11 +102,13 @@ for (let i = 0; i < enemies.length; i++) {
 	divEnemy.innerHTML += `<a class="dropdown-item" onclick="changeCharacter(${i},false)">${enemies[i].name}</a>`
 }
 
-console.log(' ברכות, אתה מספיק חכם בשביל לפתוח את המסוף. תכניס דמות_סודית() בשביל לקבל את הדמות הסודית')
-
-function דמות_סודית() {
-	changeCharacter(4, ture)
+function* charGenerator(x) {
+	for (let i = 0; i < x; i++)
+		yield;
+	changeCharacter(4, true);
+	gen = charGenerator(1);
 }
+let gen = charGenerator(1);
 
 function changeCharacter(index, player) {
 	let id = player ? 'tzahal' : 'hamas';
@@ -115,17 +118,29 @@ function changeCharacter(index, player) {
 	document.getElementById(id + '-img').alt = list[index].name;
 	document.getElementById(id + '-desc').innerHTML = list[index].desc;
 
-	document.getElementById(id + '-list').innerHTML = `<li class="list-group-item active">יתרונות</li>`;
+	const info = document.createElement('ul');
+	info.innerHTML = `<li class="list-group-item active">יתרונות</li>`;
 	for (let el of list[index].adventages) {
-		document.getElementById(id + '-list').innerHTML += `
-		<li class="list-group-item">${el}</li>`
+		info.innerHTML += `<li class="list-group-item">${el}</li>`
 	}
 
-	document.getElementById(id + '-list').innerHTML += `<li class="list-group-item bg-danger">חסרונות</li>`;
+	info.innerHTML += `<li class="list-group-item bg-danger">חסרונות</li>`;
 	for (let el of list[index].disadventages) {
-		document.getElementById(id + '-list').innerHTML += `
-		<li class="list-group-item">${el}</li>`
+		info.innerHTML += `<li class="list-group-item">${el}</li>`
 	}
+
+	document.getElementById(id + '-info').onclick = () => {
+		Swal.fire({
+			icon: 'info',
+			title: list[index].name,
+			html: info,
+			confirmButtonText: 'אחלה'
+		})
+	}
+
+
+
+
 	if (player) {
 		const RoiInst = document.getElementById('isRoi')
 		if (soliders[index].code == 'roi') RoiInst.hidden = false;
